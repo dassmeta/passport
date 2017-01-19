@@ -314,26 +314,32 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.dassmeta.stockspider</groupId>
-				<artifactId>stockspider-core</artifactId>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.dassmeta.stockspider</groupId>
-				<artifactId>stockspider-util</artifactId>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-util</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.dassmeta.stockspider</groupId>
-				<artifactId>stockspider-dal</artifactId>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-dal</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.dassmeta.stockspider</groupId>
-				<artifactId>stockspider-model</artifactId>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-web-home</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

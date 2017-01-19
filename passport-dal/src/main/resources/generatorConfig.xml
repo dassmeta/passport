@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="/Users/chenxin/.m2/repository/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21.jar" />
+	<context id="context1">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dassmeta_uum_acl" userId="root" password="" />
+		<javaModelGenerator targetPackage="com.dassmeta.passport.dal.dataobject" targetProject="passport-dal" />
+		<sqlMapGenerator targetPackage="com.dassmeta.passport.dal.dataobject" targetProject="passport-dal" />
+		<javaClientGenerator targetPackage="com.dassmeta.passport.dal.dataobject" targetProject="passport-dal" type="XMLMAPPER" />
+		<table schema="dassmeta_uum_acl" tableName="app_menu" />
+		<table schema="dassmeta_uum_acl" tableName="app_app_info" />
+		<table schema="dassmeta_uum_acl" tableName="au_job_info" />
+		<table schema="dassmeta_uum_acl" tableName="au_org_info" />
+		<table schema="dassmeta_uum_acl" tableName="au_user" />
+		<table schema="dassmeta_uum_acl" tableName="au_user_detail" />
+		<table schema="dassmeta_uum_acl" tableName="urp_permission" />
+		<table schema="dassmeta_uum_acl" tableName="urp_role" />
+		<table schema="dassmeta_uum_acl" tableName="urp_role_permission" />
+		<table schema="dassmeta_uum_acl" tableName="urp_user_permission" />
+		<table schema="dassmeta_uum_acl" tableName="urp_user_role" />
+	</context>
+</generatorConfiguration>

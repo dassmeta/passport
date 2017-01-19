@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER"
+"http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- 日志文件 appender定义 -->
+	<appender name="LOGFILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="INFO"></param>
+		<param name="File" value="../logs/dassmeta-passport.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 屏幕输出 appender定义 -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="DEBUG"></param>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 业务信息默认为INFO级别 -->
+	<logger name="com.dassmeta.passport">
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="com.dassmeta.passport" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="LOGFILE" />
+	</logger>
+
+	<logger name="com.dassmeta.passport">
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="java.sql" additivity="true">
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="LOGFILE" />
+	</logger>
+
+
+	<!-- 整体默认为WARN级别 -->
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="LOGFILE" />
+	</root>
+
+</log4j:configuration>

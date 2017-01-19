@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+	default-autowire="byName">
+<!-- 
+	<bean id="historyFileUploadScheduleJob" class="com.dassmeta.stockspider.core.service.schedule.StockSpiderHistoryFileUploadScheduleJob">
+	</bean>
+
+	<bean id="historyFileUploadJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="historyFileUploadScheduleJob" />
+		<property name="targetMethod" value="doJob" />
+		<property name="concurrent" value="true" />
+	</bean>
+
+	<bean id="intradayFileUploadScheduleJob" class="com.dassmeta.stockspider.core.service.schedule.StockSpiderIntradayFileUploadScheduleJob">
+	</bean>
+
+	<bean id="intradayFileUploadJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="intradayFileUploadScheduleJob" />
+		<property name="targetMethod" value="doJob" />
+		<property name="concurrent" value="true" />
+	</bean>
+
+	<bean id="intradayFileUploadCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="intradayFileUploadJobDetail" />
+		<property name="cronExpression" value="0 0 22 * * ?" />
+	</bean>
+
+	<bean id="historyFileUploadCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="historyFileUploadJobDetail" />
+		<property name="cronExpression" value="0 8 14 ? * *" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false" autowire="no">
+		<property name="triggers">
+			<list>
+				<ref bean="intradayFileUploadCronTrigger" /> <ref bean="historyFileUploadCronTrigger" />
+			</list>
+		</property>
+	</bean> -->
+
+</beans>

@@ -232,26 +232,5 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.dassmeta.stockspider</groupId>
-			<artifactId>stockspider-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.dassmeta.stockspider</groupId>
-			<artifactId>stockspider-util</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.dassmeta.stockspider</groupId>
-			<artifactId>stockspider-dal</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.dassmeta.stockspider</groupId>
-			<artifactId>stockspider-model</artifactId>
-		</dependency>
-
 	</dependencies>
 </project>
