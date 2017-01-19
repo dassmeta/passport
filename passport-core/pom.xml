@@ -232,5 +232,22 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.dassmeta.passport</groupId>
+			<artifactId>passport-dal</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dassmeta.passport</groupId>
+			<artifactId>passport-model</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dassmeta.passport</groupId>
+			<artifactId>passport-util</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>

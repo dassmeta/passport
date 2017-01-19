@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.dassmeta.passport.util.PageList;
 
@@ -75,4 +76,12 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 		return null;
 	}
 
+	public JdbcTemplate getJdbcTemplate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate paramJdbcTemplate) {
+		// TODO Auto-generated method stub
+	}
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/common/taglibs.jsp"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -14,9 +15,9 @@
 <meta name="author" content="nayun.info" />
 <!-- <link rel="shortcut icon" href="favicon.ico"> -->
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
+<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${ctx}/css/datepicker3.css" rel="stylesheet">
+<link href="${ctx}/css/styles.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -28,7 +29,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Dassmeta Trading Reason Service</span></a>
+				<a class="navbar-brand" href="#"><span>Dassmeta Trading
+						Reason Service</span></a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><span
@@ -397,13 +399,13 @@
 	</div>
 	<!--/.main-->
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
+	<script src="${ctx}/js/bootstrap.min.js"></script>
+	<script src="${ctx}/js/chart.min.js"></script>
+	<script src="${ctx}/js/chart-data.js"></script>
+	<script src="${ctx}/js/easypiechart.js"></script>
+	<script src="${ctx}/js/easypiechart-data.js"></script>
+	<script src="${ctx}/js/bootstrap-datepicker.js"></script>
 	<script>
 		$('#calendar').datepicker({});
 

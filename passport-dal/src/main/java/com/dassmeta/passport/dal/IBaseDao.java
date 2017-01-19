@@ -7,6 +7,12 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+/**
+ * 
+ * @param <T>
+ * @author chenxin@dassmeta.com
+ * @creation 2017年1月19日
+ */
 public interface IBaseDao<T> {
 	public T findByPrimaryKey(Serializable id) throws DataAccessException;
 
