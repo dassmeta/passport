@@ -78,21 +78,19 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	public List<Map<String, String>> getUserSystemList(String filePath) {
-		List<Map<String, String>> list = new ArrayList();
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		SAXReader reader = new SAXReader();
 		Document doc = null;
-		Element root = null;
 		try {
 			doc = reader.read(new File(filePath + "/WEB-INF/classes/user-system.xml"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
 		if (doc != null) {
-			root = doc.getRootElement();
-			List<Element> l = root.elements();
+			List<?> l = doc.getRootElement().elements();
 			for (int i = 0; i < l.size(); i++) {
-				Map<String, String> m = new HashMap();
-				List<Element> l1 = ((Element) l.get(i)).elements();
+				Map<String, String> m = new HashMap<String, String>();
+				List<?> l1 = ((Element) l.get(i)).elements();
 				for (int j = 0; j < l1.size(); j++) {
 					m.put(((Element) l1.get(j)).getName(), ((Element) l1.get(j)).getText());
 				}
