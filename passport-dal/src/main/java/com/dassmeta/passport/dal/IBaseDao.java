@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.dassmeta.passport.util.PageList;
+
 /**
  * 
  * @param <T>
@@ -36,9 +38,11 @@ public interface IBaseDao<T> {
 
 	public int getRowCount(String paramString, Object[] paramArrayOfObject);
 
-	public List<T> findPageList(T t);
+	public PageList<T> findPageList(T t);
 
-	public List<T> findPageList(T t, Map<String, Object> params);
+	public PageList<T> findPageList(Map<String, Object> params);
+
+	public PageList<T> findPageList(T t, Map<String, Object> params);
 
 	public JdbcTemplate getJdbcTemplate();
 

@@ -10,14 +10,19 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dassmeta.passport.core.service.ApplicationService;
 import com.dassmeta.passport.dal.dataobject.AppAppInfo;
 import com.dassmeta.passport.dal.dataobject.AuUser;
 import com.dassmeta.passport.dal.dataobject.UrpRole;
+import com.dassmeta.passport.dal.ibatis.AppAppInfoDao;
 import com.dassmeta.passport.util.PageList;
 
 public class ApplicationServiceImpl implements ApplicationService {
+
+	@Autowired
+	private AppAppInfoDao appInfoDao;
 
 	public PageList<AppAppInfo> findForPage(Map<String, Object> params, int page) {
 		// Criterion cri = null;

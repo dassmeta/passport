@@ -71,6 +71,10 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 		return null;
 	}
 
+	public PageList<T> findPageList(Map<String, Object> params) {
+		return null;
+	}
+
 	public PageList<T> findPageList(T t, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
