@@ -10,71 +10,70 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dassmeta.passport.core.service.ApplicationService;
 import com.dassmeta.passport.dal.dataobject.AppAppInfo;
+import com.dassmeta.passport.dal.dataobject.AppMenu;
 import com.dassmeta.passport.dal.dataobject.AuUser;
 import com.dassmeta.passport.dal.dataobject.UrpRole;
 import com.dassmeta.passport.dal.ibatis.AppAppInfoDao;
+import com.dassmeta.passport.dal.ibatis.AppMenuDao;
+import com.dassmeta.passport.dal.ibatis.AuUserDao;
+import com.dassmeta.passport.dal.ibatis.UrpRoleDao;
 import com.dassmeta.passport.util.PageList;
 
 public class ApplicationServiceImpl implements ApplicationService {
 
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
+
 	@Autowired
 	private AppAppInfoDao appInfoDao;
 
-	public PageList<AppAppInfo> findForPage(Map<String, Object> params, int page) {
-		// Criterion cri = null;
-		// cri = CriterionBuilder.eq("deleted", "N");
-		// Order o = null;
-		// o = CriterionBuilder.getOrder("createTime", false);
-		// return this.baseDao.findForPage(AppAppInfo.class, cri, Integer.valueOf(page), Integer.valueOf(10), o);
-		return null;
+	@Autowired
+	private AuUserDao userDao;
+
+	@Autowired
+	private AppMenuDao menuDao;
+
+	@Autowired
+	private UrpRoleDao roleDao;
+
+	public PageList<AppAppInfo> findForPage(Map<String, Object> params, int pageSize, int pageNo) {
+		return appInfoDao.findPageList(params, pageSize, pageNo);
 	}
 
 	public void delete(AppAppInfo app) {
-		// app.setDeleted("Y");
-		// this.baseDao.update(app);
+		app.setDeleted("Y");
+		appInfoDao.update(app);
 	}
 
 	public List<AppAppInfo> getAllApp() {
-		// String hql =
-		// "select distinct t from AppAppInfo t left join t.permission ps where t.deleted='N' and ps.deleted='N'";
-		// List appL = this.baseDao.executeHQL(hql).list();
-		// return appL;
-		return null;
+		return appInfoDao.getAllApp();
 	}
 
 	public void save(AppAppInfo app) {
-		// Date now = DateFormatUtil.getCurrentSQLDate();
-		// app = (AppAppInfo) this.baseDao.save(app);
-		// String appname = app.getAppName();
-		// AppMenu menu = new AppMenu();
-		// menu.setId(null);
-		// menu.setMenuName(appname);
-		// menu.setAppId(app.getId());
-		// menu.setCreateTime(now);
-		// menu.setMenuOrder(Integer.valueOf(1));
-		// menu.setModifyTime(now);
-		// menu.setParentId(Long.valueOf(0L));
-		// menu.setShowStyle("1");
-		// this.baseDao.save(menu);
+		long appId = appInfoDao.create(app);
 
+		String appname = app.getAppName();
+		AppMenu menu = new AppMenu();
+		menu.setId(null);
+		menu.setMenuName(appname);
+		menu.setAppId(appId);
+		menu.setMenuOrder(1);
+		menu.setParentId(Long.valueOf(0L));
+		menu.setShowStyle("1");
+		menuDao.create(menu);
 	}
 
 	public List<UrpRole> getRoleByAppId(String appId) {
-		// String hql = "from UrpRole t where t.appid='" + appId + "'";
-		// List<UrpRole> appL = this.baseDao.executeHQL(hql).list();
-		// return appL;
-		return null;
+		return roleDao.getRoleByAppId(appId);
 	}
 
 	public List<AppAppInfo> getApp() {
-		// String hql = "from AppAppInfoa t where t.deleted='N' and t.isShow='0' order by t.sort asc";
-		// List<AppAppInfoa> appL = this.baseDao.executeHQL(hql).list();
-		// return appL;
-		return null;
+		return appInfoDao.getAppByShow();
 	}
 
 	public List<Map<String, String>> getUserSystemList(String filePath) {
@@ -117,15 +116,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	public AuUser updatePassword(String loginName, String password) {
-		// String s = "from AuUser where deleted='N' and loginId='" + loginName + "'";
-		// List<AuUser> list = this.baseDao.executeHQL(s).list();
-		// if ((list != null) && (list.size() > 0)) {
-		// return (AuUser) list.get(0);
-		// }
-		return null;
+		return userDao.findByLoginName(loginName);
 	}
 
-	public String updataPasswordPass(String loginId, String psw) {
+	public String updataPasswordPass(String loginName, String newPassword) {
 		// String s = "from AuUser where deleted='N' and loginId='" + loginId + "'";
 		// List<AuUser> list = this.baseDao.executeHQL(s).list();
 		// AuUser entity = new AuUser();
@@ -134,6 +128,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 		// entity.setPassword(psw);
 		// this.baseDao.update(entity);
 		// }
+		userDao.updataPasswordByLoginName(loginName, newPassword);
+
 		return null;
 	}
 }

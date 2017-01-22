@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dassmeta.passport.dal.ibatis.AuUserDao">
+	<resultMap id="BaseResultMap" type="com.dassmeta.passport.dal.dataobject.AuUser">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="login_id" property="loginId" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="deleted" property="deleted" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="modify_time" property="modifyTime" jdbcType="DATE" />
+		<result column="vpn_group" property="vpnGroup" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, login_id, password, deleted, create_time, modify_time, vpn_group, type
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from au_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.findByLoginName" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from au_user deleted='N' and login_id=#{loginName,jdbcType=VARCHAR}
+	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.isLoginUser" resultMap="BaseResultMap" parameterType="com.dassmeta.passport.dal.dataobject.AuUser">
+		select
+		<include refid="Base_Column_List" />
+		from au_user where login_id=#{loginId,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from au_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dassmeta.passport.dal.dataobject.AuUser">
+		insert into au_user (id, login_id, password,
+		deleted, create_time, modify_time,
+		vpn_group, type)
+		values (#{id,jdbcType=BIGINT}, #{loginId,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{deleted,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{modifyTime,jdbcType=DATE},
+		#{vpnGroup,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.updataPasswordByLoginName" parameterType="map">
+		update au_user
+		set password = #{newPassword,jdbcType=VARCHAR}
+		where login_id =
+		#{loginName,jdbcType=VARCHAR}
+	</update>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AuUser">
+		update au_user
+		set login_id = #{loginId,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		deleted = #{deleted,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=DATE},
+		modify_time = #{modifyTime,jdbcType=DATE},
+		vpn_group = #{vpnGroup,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

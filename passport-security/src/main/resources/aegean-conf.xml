@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aegean-configuration>
+
+	<!--配置AEGEAN集中权限认证地址以及认证信息,name为唯一标识符,多个认证地址用以均衡 -->
+	<services-group>
+		<service name="certification">
+			<wsdl>http://localhost:8080/aegean/services/Certification?wsdl</wsdl>
+			<username>liang-test</username>
+			<password>123$%^</password>
+		</service>
+
+		<service name="test">
+			<wsdl>http://localhost:8080/aegean/services/Certification?wsdl</wsdl>
+			<username>liang</username>
+			<password>sa</password>
+		</service>
+	</services-group>
+
+</aegean-configuration>

@@ -9,7 +9,8 @@ import com.dassmeta.passport.dal.dataobject.UrpRole;
 import com.dassmeta.passport.util.PageList;
 
 public abstract interface ApplicationService {
-	public abstract PageList<AppAppInfo> findForPage(Map<String, Object> paramMap, int currentPage);
+
+	public abstract PageList<AppAppInfo> findForPage(Map<String, Object> paramMap, int pageSize, int pageNo);
 
 	public abstract void delete(AppAppInfo paramAppAppInfo);
 

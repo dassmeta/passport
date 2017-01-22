@@ -6,78 +6,70 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.widewisdom.entity.app.AppAppInfo;
-import cn.widewisdom.entity.urp.UrpPermission;
-import cn.widewisdom.service.PermissionService;
-
-import com.specter.dao.BaseDao;
-import com.specter.dao.Page;
-import com.specter.security.auth.entity.Permission;
-import com.specter.security.auth.entity.UserDetail;
-import com.specter.security.context.SecurityContext;
-import com.specter.service.impl.CriterionBuilder;
+import com.dassmeta.passport.core.service.PermissionService;
+import com.dassmeta.passport.dal.dataobject.AppAppInfo;
+import com.dassmeta.passport.dal.dataobject.UrpPermission;
+import com.dassmeta.passport.dal.ibatis.AppAppInfoDao;
+import com.dassmeta.passport.dal.ibatis.UrpPermissionDao;
+import com.dassmeta.passport.dal.ibatis.UrpRolePermissionDao;
+import com.dassmeta.passport.dal.ibatis.UrpUserPermissionDao;
+import com.dassmeta.passport.security.auth.entity.Permission;
+import com.dassmeta.passport.security.auth.entity.UserDetail;
+import com.dassmeta.passport.security.context.SecurityContext;
+import com.dassmeta.passport.util.PageList;
 
 public class PermissionServiceImpl implements PermissionService {
-	@Autowired
-	private BaseDao baseDao;
 
-	public List<?> getPermission() {
-		String hql = "from UrpPermission t where t.deleted='N'";
-		List l = this.baseDao.executeHQL(hql).list();
-		return l;
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
+	@Autowired
+	private UrpPermissionDao permissionDao;
+
+	@Autowired
+	private UrpRolePermissionDao rolePermissionDao;
+
+	@Autowired
+	private UrpUserPermissionDao userPermissionDao;
+
+	@Autowired
+	private AppAppInfoDao appDao;
+
+	public List<UrpPermission> getAllPermission() {
+		return permissionDao.getAllPermission();
 	}
 
 	public void save(UrpPermission permission) {
 		permission.setDeleted("N");
-		this.baseDao.save(permission);
+		this.permissionDao.update(permission);
 	}
 
 	public void delete(UrpPermission permission) {
-		this.baseDao.delete(permission);
-
-		String hql1 = "from UrpRolePermission t where t.permissionId='" + permission.getPid() + "'";
-		String hql2 = "from UrpUserPermission t  where t.permissionId='" + permission.getPid() + "'";
-		List list1 = this.baseDao.executeHQL(hql1).list();
-		List list2 = this.baseDao.executeHQL(hql2).list();
-		this.baseDao.deleteAll(list1);
-		this.baseDao.deleteAll(list2);
+		this.permissionDao.remove(permission);
+		this.rolePermissionDao.removeByPid(permission.getId());
+		this.userPermissionDao.removeByPid(permission.getId());
 	}
 
-	public Page<UrpPermission> findForPage(Map<String, Object> params, int page) {
-		Order o = null;
-		Criterion cri = null;
-		if (params != null) {
-			cri = CriterionBuilder.and(cri, CriterionBuilder.like("name", params.get("name")));
-			if (params.get("appId") != null) {
-				cri = CriterionBuilder.and(cri, CriterionBuilder.sqlRestriction("({alias}.app_id=" + params.get("appId") + ")"));
-			}
-		}
-		o = CriterionBuilder.getOrder("createTime", false);
-		return this.baseDao.findForPage(UrpPermission.class, cri, Integer.valueOf(page), Integer.valueOf(10), o);
+	public PageList<UrpPermission> findForPage(Map<String, Object> params, int pageSize, int pageNo) {
+
+		return this.permissionDao.findPageList(params, pageSize, pageNo);
 	}
 
 	public boolean check(Long id, String permissionKey) {
-		DetachedCriteria criteria = DetachedCriteria.forClass(UrpPermission.class);
-		criteria.add(Restrictions.eq("permissionKey", permissionKey));
-		if ((id != null) && (!"".equals(id))) {
-			criteria.add(Restrictions.ne("id", id));
-		}
-		List<UrpPermission> l = this.baseDao.findByCriteria(UrpPermission.class, criteria);
-		return (l != null) && (l.size() >= 1);
+		return false;
 	}
 
-	public Set<UrpPermission> findPermissionByAppCode(String code) {
-		AppAppInfo app = (AppAppInfo) this.baseDao.getByUnique(AppAppInfo.class, "appCode", code);
+	public List<UrpPermission> findPermissionByAppCode(String code) {
+		AppAppInfo app = this.appDao.findAppByAppCode(code);
 		if (app == null) {
+			if (logger.isInfoEnabled()) {
+				logger.info("find Permission By AppCode is null, appCode=" + code);
+			}
 			return null;
 		}
-		return app.getPermission();
+		return this.permissionDao.findByAppId(app.getId());
 	}
 
 	public boolean ifAllGranted(String... permissionKey) {
@@ -105,7 +97,7 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	private Set<String> getGranted() {
-		Set<String> ret = new HashSet();
+		Set<String> ret = new HashSet<String>();
 		UserDetail detail = SecurityContext.getUserDetail();
 		Permission[] ps = detail.getPermissions();
 		if ((ps != null) && (ps.length > 0)) {
@@ -151,16 +143,24 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	public void enabledPermission(UrpPermission entity) {
-		UrpPermission up = (UrpPermission) this.baseDao.get(UrpPermission.class, entity.getPid());
+		UrpPermission up = this.permissionDao.findByPrimaryKey(entity.getId());
 		if (up != null) {
-			this.baseDao.executeHQL("update UrpPermission p set p.deleted=?,p.modifyTime=? where p.id=?").setString(0, "N").setDate(1, new Date()).setSerializable(2, up.getPid()).executeUpdate();
+
+			// this.baseDao.executeHQL("update UrpPermission p set p.deleted=?,p.modifyTime=? where p.id=?").setString(0,
+			// "N").setDate(1, new Date()).setSerializable(2, up.getPid()).executeUpdate();
 		}
 	}
 
 	public void disabledPermission(UrpPermission entity) {
-		UrpPermission up = (UrpPermission) this.baseDao.get(UrpPermission.class, entity.getPid());
+		UrpPermission up = this.permissionDao.findByPrimaryKey(entity.getId());
 		if (up != null) {
-			this.baseDao.executeHQL("update UrpPermission p set p.deleted=?,p.modifyTime=? where p.id=?").setString(0, "Y").setDate(1, new Date()).setSerializable(2, up.getPid()).executeUpdate();
+			// this.baseDao.executeHQL("update UrpPermission p set p.deleted=?,p.modifyTime=? where p.id=?").setString(0,
+			// "Y").setDate(1, new Date()).setSerializable(2, up.getPid()).executeUpdate();
 		}
+	}
+
+	public List<?> getPermission() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

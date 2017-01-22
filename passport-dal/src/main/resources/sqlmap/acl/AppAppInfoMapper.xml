@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dassmeta.passport.dal.ibatis.AppAppInfoDao">
+	<resultMap id="BaseResultMap" type="com.dassmeta.passport.dal.dataobject.AppAppInfo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+		<result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+		<result column="APP_URL" property="appUrl" jdbcType="VARCHAR" />
+		<result column="NAME_KEY" property="nameKey" jdbcType="VARCHAR" />
+		<result column="PASS_KEY" property="passKey" jdbcType="VARCHAR" />
+		<result column="SSO_ACTION" property="ssoAction" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="DATE" />
+		<result column="DELETED" property="deleted" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="IS_SHOW" property="isShow" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, APP_CODE, APP_NAME, APP_URL, NAME_KEY, PASS_KEY, SSO_ACTION, CREATE_TIME, MODIFY_TIME,
+		DELETED, DESCRIPTION, IS_SHOW, SORT
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from app_app_info
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from app_app_info
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into app_app_info (APP_CODE, APP_NAME,
+		APP_URL, NAME_KEY,
+		PASS_KEY,
+		SSO_ACTION, CREATE_TIME, MODIFY_TIME,
+		DELETED, DESCRIPTION, IS_SHOW,
+		SORT)
+		values
+		(
+		#{appCode,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR},
+		#{appUrl,jdbcType=VARCHAR},
+		#{nameKey,jdbcType=VARCHAR}, #{passKey,jdbcType=VARCHAR},
+		#{ssoAction,jdbcType=VARCHAR},
+		now(), now(),
+		#{deleted,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}, #{isShow,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER})
+	</insert>
+
+
+	<update id="updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo">
+		update app_app_info
+		set APP_CODE = #{appCode,jdbcType=VARCHAR},
+		APP_NAME = #{appName,jdbcType=VARCHAR},
+		APP_URL = #{appUrl,jdbcType=VARCHAR},
+		NAME_KEY = #{nameKey,jdbcType=VARCHAR},
+		PASS_KEY =
+		#{passKey,jdbcType=VARCHAR},
+		SSO_ACTION = #{ssoAction,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=DATE},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=DATE},
+		DELETED = #{deleted,jdbcType=VARCHAR},
+		DESCRIPTION = #{description,jdbcType=VARCHAR},
+		IS_SHOW = #{isShow,jdbcType=VARCHAR},
+		SORT = #{sort,jdbcType=INTEGER}
+		where ID =
+		#{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 后台分页查询 -->
+	<select id="findPageListForMap" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from app_app_info where deleted='N'
+		order by CREATE_TIME desc limit #{offset},#{limit}
+	</select>
+
+	<select id="findPageListForMap.count" resultType="long">
+		select count(*) FROM app_app_info where deleted='N'
+	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDaoImpl.getAllApp" resultMap="BaseResultMap">
+		select distinct a.* from app_app_info a
+		left join urp_permission ps
+		on a.ID=ps.app_id
+		where a.deleted='N'
+		and
+		ps.deleted='N'
+	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDaoImpl.getAllApp" resultMap="BaseResultMap">
+		select t.* from app_app_info
+		t where t.deleted='N' and t.isShow='0' order by t.sort asc
+	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl.findAppByAppCode" resultMap="BaseResultMap">
+		select t.* from app_app_info
+		t where t.app_code=#{appCode,jdbcType=VARCHAR}
+	</select>
+</mapper>

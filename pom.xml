@@ -379,5 +379,6 @@
 		<module>passport-core</module>
 		<module>passport-util</module>
 		<module>passport-web-home</module>
-	</modules>
+    <module>passport-security</module>
+  </modules>
 </project>

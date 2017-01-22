@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
@@ -11,7 +9,5 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-4.0.xsd "
 	default-autowire="byName">
 
-	<!-- <bean id="stockDao" class="com.dassmeta.stockspider.dal.impl.StockDaoImpl"></bean>
-	<bean id="stockTranDetailDao"
-		class="com.dassmeta.stockspider.dal.impl.StockTranDetailDaoImpl"></bean> -->
+	<bean id="appInfoDao" class="com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl" parent="aclSqlSessionDao" />
 </beans>

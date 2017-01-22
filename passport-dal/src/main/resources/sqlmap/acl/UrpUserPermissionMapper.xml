@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dassmeta.passport.dal.ibatis.UrpUserPermissionDao">
+	<resultMap id="BaseResultMap" type="com.dassmeta.passport.dal.dataobject.UrpUserPermission">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="permission_id" property="permissionId" jdbcType="BIGINT" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="modify_time" property="modifyTime" jdbcType="DATE" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, permission_id, description, create_time, modify_time
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from urp_user_permission
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from urp_user_permission
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="com.dassmeta.passport.dal.ibatis.impl.UrpUserPermissionDaoImpl.removeByPid" parameterType="java.lang.Long">
+		delete from urp_user_permission
+		where permission_id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dassmeta.passport.dal.dataobject.UrpUserPermission">
+		insert into urp_user_permission (id, user_id, permission_id,
+		description, create_time, modify_time
+		)
+		values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+		#{permissionId,jdbcType=BIGINT},
+		#{description,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{modifyTime,jdbcType=DATE}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.UrpUserPermission">
+		update urp_user_permission
+		set user_id = #{userId,jdbcType=BIGINT},
+		permission_id = #{permissionId,jdbcType=BIGINT},
+		description =
+		#{description,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=DATE},
+		modify_time = #{modifyTime,jdbcType=DATE}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.dassmeta.passport.util.PageList;
+import com.dassmeta.passport.util.PageQueryUtils;
 
 /**
  * @param <T>
@@ -17,11 +18,13 @@ import com.dassmeta.passport.util.PageList;
  */
 public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements IBaseDao<T> {
 
+	private JdbcTemplate jdbcTemplate;
+
 	public T findByPrimaryKey(Serializable id) throws DataAccessException {
 		return getSqlSession().selectOne("selectByPrimaryKey", id);
 	}
 
-	public int create(T t) throws DataAccessException {
+	public long create(T t) throws DataAccessException {
 		return getSqlSession().insert("insert", t);
 	}
 
@@ -33,59 +36,39 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 		return getSqlSession().delete("remove", t);
 	}
 
-	public int saveOrUpdate(T t) throws DataAccessException {
-		return 0;
-	}
-
 	public int remove(Serializable id) throws DataAccessException {
 		return getSqlSession().delete("deleteByPrimaryKey", id);
 	}
 
-	public void batchSave(List<T> paramList) throws DataAccessException {
-		// TODO Auto-generated method stub
+	public int saveOrUpdate(T t) throws DataAccessException {
+		return getSqlSession().update("saveOrUpdate", t);
+	}
 
+	public int batchSave(List<T> paramList) throws DataAccessException {
+		return getSqlSession().insert("batchSave", paramList);
 	}
 
 	public List<T> batchSaveReturnIds(List<T> paramList) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void batchUpdate(List<T> paramList) throws DataAccessException {
-		// TODO Auto-generated method stub
-
+	public int batchUpdate(List<T> paramList) throws DataAccessException {
+		return getSqlSession().update("batchUpdate", paramList);
 	}
 
-	public int update(String paramString, Object[] paramArrayOfObject) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public PageList<T> findPageList(T t, int pageSize, int pageNo) {
+		return PageQueryUtils.pageQuery(getSqlSession(), "findPageListForBean", t, pageNo, pageSize);
 	}
 
-	public int getRowCount(String paramString, Object[] paramArrayOfObject) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public PageList<T> findPageList(T t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public PageList<T> findPageList(Map<String, Object> params) {
-		return null;
-	}
-
-	public PageList<T> findPageList(T t, Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+	public PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
+		return PageQueryUtils.pageQuery(getSqlSession(), "findPageListForMap", params, pageNo, pageSize);
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.jdbcTemplate;
 	}
 
 	public void setJdbcTemplate(JdbcTemplate paramJdbcTemplate) {
-		// TODO Auto-generated method stub
+		this.jdbcTemplate = paramJdbcTemplate;
 	}
 }

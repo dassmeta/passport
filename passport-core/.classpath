@@ -27,5 +27,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/passport-dal"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/passport-model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/passport-util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/passport-security"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

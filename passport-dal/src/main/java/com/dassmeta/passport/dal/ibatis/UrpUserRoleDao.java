@@ -5,4 +5,6 @@ import com.dassmeta.passport.dal.dataobject.UrpUserRole;
 
 public interface UrpUserRoleDao extends IBaseDao<UrpUserRole> {
 
+	void removeByRoleId(Long id);
+
 }

@@ -1,45 +1,59 @@
 package com.dassmeta.passport.core.service.impl;
 
-import cn.widewisdom.entity.urp.UrpPermission;
-import cn.widewisdom.entity.urp.UrpRole;
-import cn.widewisdom.entity.urp.UrpRolePermission;
-import cn.widewisdom.service.RoleService;
-import com.specter.dao.BaseDao;
-import com.specter.dao.Page;
-import com.specter.service.impl.CriterionBuilder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.Query;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import com.dassmeta.passport.core.service.RoleService;
+import com.dassmeta.passport.dal.dataobject.UrpPermission;
+import com.dassmeta.passport.dal.dataobject.UrpRole;
+import com.dassmeta.passport.dal.ibatis.UrpPermissionDao;
+import com.dassmeta.passport.dal.ibatis.UrpRoleDao;
+import com.dassmeta.passport.dal.ibatis.UrpRolePermissionDao;
+import com.dassmeta.passport.dal.ibatis.UrpUserRoleDao;
 
 public class RoleServiceImpl implements RoleService {
 	@Autowired
-	private BaseDao baseDao;
+	private UrpRoleDao roleDao;
 
-	public void delete(UrpRole role) {
-		this.baseDao.delete(role);
-		String hql = "from UrpRolePermission t where t.roleId='" + role.getId() + "'";
-		Query q = this.baseDao.executeHQL(hql);
-		this.baseDao.deleteAll(q.list());
+	@Autowired
+	private UrpRolePermissionDao rolePermissionDao;
 
-		hql = "from UrpUserRole t where t.roleId='" + role.getId() + "'";
-		q = this.baseDao.executeHQL(hql);
-		this.baseDao.deleteAll(q.list());
+	@Autowired
+	private UrpUserRoleDao userRoleDao;
+
+	@Autowired
+	private UrpPermissionDao permissionDao;
+
+	@Autowired
+	private TransactionTemplate aclTransactionTemplate;
+
+	public void delete(final UrpRole role) {
+
+		aclTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				roleDao.remove(role);
+				rolePermissionDao.removeByRoleId(role.getId());
+				userRoleDao.removeByRoleId(role.getId());
+			}
+		});
+
 	}
 
-	public void deleteRolePermission(String roleId) {
-		String hql = "from UrpRolePermission t where t.roleId = " + roleId;
-		List list = this.baseDao.executeHQL(hql).list();
-		this.baseDao.deleteAll(list);
+	public void deleteRolePermission(Long roleId) {
+		this.rolePermissionDao.removeByRoleId(roleId);
 	}
 
 	public List<UrpPermission> findPermissionInfo() {
-		String HQL = "from UrpPermission t where t.deleted='N'";
-		List<UrpPermission> l = this.baseDao.executeHQL(HQL).list();
-		return l;
+		return this.permissionDao.getAllPermission();
 	}
 
 	public List<?> getRolePermission(Long roleId) {
@@ -123,4 +137,9 @@ public class RoleServiceImpl implements RoleService {
 			this.baseDao.executeHQL("update UrpRole r set r.visible=?,r.modifyTime=? where r.id=?").setString(0, "N").setDate(1, new Date()).setSerializable(2, ur.getId()).executeUpdate();
 		}
 	}
+
+	public void setAclTransactionTemplate(TransactionTemplate aclTransactionTemplate) {
+		this.aclTransactionTemplate = aclTransactionTemplate;
+	}
+
 }

@@ -18,7 +18,7 @@ import com.dassmeta.passport.util.PageList;
 public interface IBaseDao<T> {
 	public T findByPrimaryKey(Serializable id) throws DataAccessException;
 
-	public int create(T t) throws DataAccessException;
+	public long create(T t) throws DataAccessException;
 
 	public int update(T t) throws DataAccessException;
 
@@ -28,21 +28,15 @@ public interface IBaseDao<T> {
 
 	public int remove(Serializable id) throws DataAccessException;
 
-	public void batchSave(List<T> paramList) throws DataAccessException;
+	public int batchSave(List<T> paramList) throws DataAccessException;
 
 	public List<T> batchSaveReturnIds(List<T> paramList) throws DataAccessException;
 
-	public void batchUpdate(List<T> paramList) throws DataAccessException;
+	public int batchUpdate(List<T> paramList) throws DataAccessException;
 
-	public int update(String paramString, Object[] paramArrayOfObject) throws DataAccessException;
+	public PageList<T> findPageList(T t, int pageSize, int pageNo);
 
-	public int getRowCount(String paramString, Object[] paramArrayOfObject);
-
-	public PageList<T> findPageList(T t);
-
-	public PageList<T> findPageList(Map<String, Object> params);
-
-	public PageList<T> findPageList(T t, Map<String, Object> params);
+	public PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo);
 
 	public JdbcTemplate getJdbcTemplate();
 

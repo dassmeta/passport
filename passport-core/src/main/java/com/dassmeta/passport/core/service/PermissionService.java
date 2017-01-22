@@ -2,7 +2,6 @@ package com.dassmeta.passport.core.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.dassmeta.passport.dal.dataobject.UrpPermission;
 import com.dassmeta.passport.util.PageList;
@@ -16,9 +15,9 @@ public abstract interface PermissionService {
 
 	public abstract List<?> getPermission();
 
-	public abstract PageList<UrpPermission> findForPage(Map<String, Object> paramMap, int paramInt);
+	public abstract PageList<UrpPermission> findForPage(Map<String, Object> params, int pageSize, int pageNo);
 
-	public abstract Set<UrpPermission> findPermissionByAppCode(String paramString);
+	public abstract List<UrpPermission> findPermissionByAppCode(String paramString);
 
 	public abstract boolean ifAllGranted(String[] paramArrayOfString);
 

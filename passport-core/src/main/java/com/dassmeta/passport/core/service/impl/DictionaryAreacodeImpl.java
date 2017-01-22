@@ -1,34 +1,24 @@
 package com.dassmeta.passport.core.service.impl;
 
-import cn.widewisdom.entity.areacode.DictionaryAreacode;
-import cn.widewisdom.service.DictionaryAreacodeService;
-import com.specter.dao.BaseDao;
-import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dassmeta.passport.core.service.DictionaryAreacodeService;
+import com.dassmeta.passport.dal.dataobject.DictionaryAreacode;
+import com.dassmeta.passport.dal.ibatis.DictionaryAreacodeDao;
+
 public class DictionaryAreacodeImpl implements DictionaryAreacodeService {
+
 	@Autowired
-	private BaseDao baseDao;
+	private DictionaryAreacodeDao areacodeDao;
 
 	public List<DictionaryAreacode> getAreaByAreaCode(String areaCode) {
-		List<DictionaryAreacode> list = new ArrayList();
-		String sql = "from DictionaryAreacode t where t.areaCode='" + areaCode + "' and t.state='1' ";
-		list = this.baseDao.executeHQL(sql).list();
-		return list;
+		return this.areacodeDao.getAreaByAreaCode(areaCode);
 	}
 
 	public List<DictionaryAreacode> getAjaxArea(String areaCode, String area) {
-		String nextArea = getNextArea(area);
-
-		String sql = "from DictionaryAreacode t where t.areaCode like '";
-
-		sql = sql + areaCode + "%' and t." + area + " is not null and t.";
-		sql = sql + nextArea + " is null and t.state='1'";
-
-		Query q = this.baseDao.executeHQL(sql);
-		return q.list();
+		return this.areacodeDao.getAjaxArea(areaCode, area, getNextArea(area));
 	}
 
 	public String getNextArea(String area) {

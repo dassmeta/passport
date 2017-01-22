@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.apache.ibatis.session.SqlSession;
 
 /**
  * 
@@ -15,21 +15,21 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
  */
 public class PageQueryUtils<T> {
 
-	public static PageList<Object> pageQuery(SqlSessionDaoSupport sqlSessionDaoSupport, String statementName, PageQuery parameterObject) {
-		return pageQuery(sqlSessionDaoSupport, statementName, statementName + ".count", parameterObject, parameterObject.getPage(), parameterObject.getPageSize());
+	public static <T> PageList<T> pageQuery(SqlSession sqlSession, String statementName, PageQuery parameterObject) {
+		return pageQuery(sqlSession, statementName, statementName + ".count", parameterObject, parameterObject.getPage(), parameterObject.getPageSize());
 	}
 
-	public static PageList<Object> pageQuery(SqlSessionDaoSupport sqlSessionDaoSupport, String statementName, String countStatementName, PageQuery parameterObject) {
-		return pageQuery(sqlSessionDaoSupport, statementName, countStatementName, parameterObject, parameterObject.getPage(), parameterObject.getPageSize());
+	public static <T> PageList<T> pageQuery(SqlSession sqlSession, String statementName, String countStatementName, PageQuery parameterObject) {
+		return pageQuery(sqlSession, statementName, countStatementName, parameterObject, parameterObject.getPage(), parameterObject.getPageSize());
 	}
 
-	public static PageList<Object> pageQuery(SqlSessionDaoSupport sqlSessionDaoSupport, String statementName, Object parameterObject, int page, int pageSize) {
-		return pageQuery(sqlSessionDaoSupport, statementName, statementName + ".count", parameterObject, page, pageSize);
+	public static <T> PageList<T> pageQuery(SqlSession sqlSession, String statementName, Object parameterObject, int page, int pageSize) {
+		return pageQuery(sqlSession, statementName, statementName + ".count", parameterObject, page, pageSize);
 	}
 
-	public static PageList<Object> pageQuery(SqlSessionDaoSupport sqlSessionDaoSupport, String statementName, String countStatementName, Object parameterObject, int page, int pageSize) {
+	public static <T> PageList<T> pageQuery(SqlSession sqlsession, String statementName, String countStatementName, Object parameterObject, int page, int pageSize) {
 
-		int totalCount = sqlSessionDaoSupport.getSqlSession().selectOne(countStatementName, parameterObject);
+		int totalCount = sqlsession.selectOne(countStatementName, parameterObject);
 
 		Paginator paginator = new Paginator(pageSize, totalCount);
 		paginator.setPage(page);
@@ -41,9 +41,9 @@ public class PageQueryUtils<T> {
 			otherParams.put("startRow", paginator.getBeginIndex());
 			otherParams.put("endRow", paginator.getEndIndex());
 
-			List<Object> list = sqlSessionDaoSupport.getSqlSession().selectList(statementName, otherParams);
-			return new PageList<Object>(list, paginator);
+			List<T> list = sqlsession.selectList(statementName, otherParams);
+			return new PageList<T>(list, paginator);
 		}
-		return new PageList<Object>(new ArrayList<Object>(0), new Paginator(pageSize, 0));
+		return new PageList<T>(new ArrayList<T>(0), new Paginator(pageSize, 0));
 	}
 }
