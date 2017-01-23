@@ -5,8 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	/** LOGGER */
-	private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
+	// private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
 	@RequestMapping("/")
 	public String home(HttpServletRequest request, HttpServletResponse response) throws IOException {

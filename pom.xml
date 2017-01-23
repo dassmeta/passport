@@ -338,6 +338,12 @@
 				<version>${project.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-security</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -379,6 +385,6 @@
 		<module>passport-core</module>
 		<module>passport-util</module>
 		<module>passport-web-home</module>
-    <module>passport-security</module>
-  </modules>
+		<module>passport-security</module>
+	</modules>
 </project>
