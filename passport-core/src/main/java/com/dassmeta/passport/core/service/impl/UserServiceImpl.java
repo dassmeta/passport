@@ -1,22 +1,12 @@
 package com.dassmeta.passport.core.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.Query;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.dassmeta.passport.core.service.UserService;
-import com.dassmeta.passport.dal.dataobject.AppAppInfo;
 import com.dassmeta.passport.dal.dataobject.AuUser;
 import com.dassmeta.passport.dal.dataobject.AuUserDetail;
 import com.dassmeta.passport.dal.dataobject.UrpPermission;
-import com.dassmeta.passport.dal.dataobject.UrpRole;
-import com.dassmeta.passport.dal.dataobject.UrpUserPermission;
-import com.dassmeta.passport.dal.dataobject.UrpUserRole;
 
 public class UserServiceImpl implements UserService {
 
