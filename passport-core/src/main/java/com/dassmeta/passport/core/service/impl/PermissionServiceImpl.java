@@ -1,6 +1,5 @@
 package com.dassmeta.passport.core.service.impl;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;

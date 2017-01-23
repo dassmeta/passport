@@ -15,7 +15,7 @@ public abstract interface RoleService {
 
 	public abstract void delete(UrpRole paramUrpRole);
 
-	public abstract PageList<UrpRole> findForPage(Map<String, Object> paramMap, int paramInt);
+	public abstract PageList<UrpRole> findForPage(Map<String, Object> params, int pageSize, int pageNo);
 
 	public abstract void deleteRolePermission(Long roleId);
 

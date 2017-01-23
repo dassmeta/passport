@@ -8,4 +8,6 @@ import com.dassmeta.passport.dal.dataobject.UrpRole;
 public interface UrpRoleDao extends IBaseDao<UrpRole> {
 
 	List<UrpRole> getRoleByAppId(String appId);
+
+	List<UrpRole> getAllRole();
 }

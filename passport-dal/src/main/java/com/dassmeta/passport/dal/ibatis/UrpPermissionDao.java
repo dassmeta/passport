@@ -11,4 +11,6 @@ public interface UrpPermissionDao extends IBaseDao<UrpPermission> {
 
 	List<UrpPermission> findByAppId(Long id);
 
+	List<UrpPermission> findByRoleId(Long roleId);
+
 }

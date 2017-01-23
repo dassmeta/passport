@@ -33,6 +33,16 @@
 		where app_id = #{appId,jdbcType=BIGINT}
 	</select>
 
+	<select id="com.dassmeta.passport.dal.ibatis.impl.UrpPermissionDaoImpl.findByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		p.*
+		from urp_permission p
+		left join urp_role_permission rp
+		on
+		p.id=rp.permission_id
+		where role_id = #{roleId,jdbcType=BIGINT}
+	</select>
+
 	<select id="com.dassmeta.passport.dal.ibatis.impl.UrpPermissionDaoImpl.getAllPermission" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

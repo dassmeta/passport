@@ -12,4 +12,8 @@ public class UrpRoleDaoImpl extends IBatisBaseDao<UrpRole> implements UrpRoleDao
 		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getRoleByAppId", appId);
 	}
 
+	public List<UrpRole> getAllRole() {
+		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getAllRole");
+	}
+
 }

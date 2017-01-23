@@ -16,4 +16,8 @@ public class UrpPermissionDaoImpl extends IBatisBaseDao<UrpPermission> implement
 		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpPermissionDaoImpl.findByAppId", appId);
 	}
 
+	public List<UrpPermission> findByRoleId(Long roleId) {
+		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpPermissionDaoImpl.findByRoleId", roleId);
+	}
+
 }

@@ -13,10 +13,12 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.dassmeta.passport.core.service.RoleService;
 import com.dassmeta.passport.dal.dataobject.UrpPermission;
 import com.dassmeta.passport.dal.dataobject.UrpRole;
+import com.dassmeta.passport.dal.dataobject.UrpRolePermission;
 import com.dassmeta.passport.dal.ibatis.UrpPermissionDao;
 import com.dassmeta.passport.dal.ibatis.UrpRoleDao;
 import com.dassmeta.passport.dal.ibatis.UrpRolePermissionDao;
 import com.dassmeta.passport.dal.ibatis.UrpUserRoleDao;
+import com.dassmeta.passport.util.PageList;
 
 public class RoleServiceImpl implements RoleService {
 	@Autowired
@@ -56,90 +58,97 @@ public class RoleServiceImpl implements RoleService {
 		return this.permissionDao.getAllPermission();
 	}
 
-	public List<?> getRolePermission(Long roleId) {
-		String s = "select b.NAME ,a.PERMISSION_ID from URP_ROLE_PERMISSION a,URP_PERMISSION b where a.PERMISSION_ID=b.ID and ROLE_ID=" + roleId;
-		Query query = this.baseDao.executeSQL(s);
-		return query.list();
+	public List<UrpPermission> getRolePermission(Long roleId) {
+		return this.permissionDao.findByRoleId(roleId);
 	}
 
 	public List<UrpRole> getAllRole() {
-		Query query = this.baseDao.executeHQL("from UrpRole t where t.visible='Y' order by t.roleName");
-		return query.list();
+		return roleDao.getAllRole();
 	}
 
 	public List<UrpRole> getAllRoleByOrgCode(String orgId) {
-		orgId = " and orgCode = " + orgId + " ";
-		Query query = this.baseDao.executeHQL("from UrpRole t where t.visible='Y'" + orgId + " order by t.roleName");
-		return query.list();
+		// orgId = " and orgCode = " + orgId + " ";
+		// Query query = this.baseDao.executeHQL("from UrpRole t where t.visible='Y'" + orgId + " order by t.roleName");
+		// return query.list();
+		return null;
 	}
 
-	public Page<UrpRole> findForPage(Map<String, Object> params, int page) {
-		Criterion cri = null;
-		Order o = null;
-		o = CriterionBuilder.getOrder("createTime", false);
-		return this.baseDao.findForPage(UrpRole.class, cri, Integer.valueOf(page), Integer.valueOf(10), o);
+	public PageList<UrpRole> findForPage(Map<String, Object> params, int pageSize, int pageNo) {
+		// Criterion cri = null;
+		// Order o = null;
+		// o = CriterionBuilder.getOrder("createTime", false);
+		// return this.baseDao.findForPage(UrpRole.class, cri, Integer.valueOf(page), Integer.valueOf(10), o);
+		//
+		return roleDao.findPageList(params, pageSize, pageNo);
 	}
 
 	public List<?> findAuUserDetail(String id) {
-		String s = "select c.USER_NAME,b.ORG_NAME,c.JOB_NAME from AU_ORG_INFO  b,AU_USER_DETAIL  c,";
-		s = s + "URP_USER_ROLE d\twhere d.ROLE_ID='" + id + "' and b.ID=c.ORG_ID and d.USER_ID=c.USER_ID ";
-		Query query = this.baseDao.executeSQL(s);
-		return query.list();
+		// String s = "select c.USER_NAME,b.ORG_NAME,c.JOB_NAME from AU_ORG_INFO  b,AU_USER_DETAIL  c,";
+		// s = s + "URP_USER_ROLE d\twhere d.ROLE_ID='" + id + "' and b.ID=c.ORG_ID and d.USER_ID=c.USER_ID ";
+		// Query query = this.baseDao.executeSQL(s);
+		// return query.list();
+		return null;
 	}
 
 	public void saveOrUpdateRolePermission(UrpRolePermission urpRolePermission) {
-		this.baseDao.save(urpRolePermission);
+		// this.baseDao.save(urpRolePermission);
+		this.rolePermissionDao.saveOrUpdate(urpRolePermission);
 	}
 
 	public String getRolePer(String roleId) {
-		String perID = "";
-		String perS = "";
-		String hql = "from UrpRolePermission t where t.roleId='" + roleId + "'";
-		List roleL = this.baseDao.executeHQL(hql).list();
-		for (int i = 0; i < roleL.size(); i++) {
-			UrpRolePermission role = (UrpRolePermission) roleL.get(i);
-			perID = perID + "'" + role.getPermissionId() + "',";
-		}
-		if (!"".equals(perID)) {
-			perID = perID.substring(0, perID.length() - 1);
-			String hql2 = "from UrpPermission t where t.id in (" + perID + ")";
-			List perL = this.baseDao.executeHQL(hql2).list();
-			for (int i = 0; i < perL.size(); i++) {
-				UrpPermission per = (UrpPermission) perL.get(i);
-				perS = perS + per.getName() + "���";
-			}
-		}
-		return perS;
+		// String perID = "";
+		// String perS = "";
+		// String hql = "from UrpRolePermission t where t.roleId='" + roleId + "'";
+		// List roleL = this.baseDao.executeHQL(hql).list();
+		// for (int i = 0; i < roleL.size(); i++) {
+		// UrpRolePermission role = (UrpRolePermission) roleL.get(i);
+		// perID = perID + "'" + role.getPermissionId() + "',";
+		// }
+		// if (!"".equals(perID)) {
+		// perID = perID.substring(0, perID.length() - 1);
+		// String hql2 = "from UrpPermission t where t.id in (" + perID + ")";
+		// List perL = this.baseDao.executeHQL(hql2).list();
+		// for (int i = 0; i < perL.size(); i++) {
+		// UrpPermission per = (UrpPermission) perL.get(i);
+		// perS = perS + per.getName() + "���";
+		// }
+		// }
+		// return perS;
+		return null;
 	}
 
 	public void deleteRolePermission(UrpRolePermission urpRolePermission) {
-		String hql = "from UrpRolePermission a where a.roleId = " + urpRolePermission.getRoleId() + " and a.permissionId = " + urpRolePermission.getPermissionId();
-		Query query = this.baseDao.executeHQL(hql);
-		this.baseDao.deleteAll(query.list());
+		// String hql = "from UrpRolePermission a where a.roleId = " + urpRolePermission.getRoleId() +
+		// " and a.permissionId = " + urpRolePermission.getPermissionId();
+		// Query query = this.baseDao.executeHQL(hql);
+		// this.baseDao.deleteAll(query.list());
 	}
 
 	public List getAllDepart() {
-		String hql = "from AuOrgInfo";
-		List list = this.baseDao.executeHQL(hql).list();
-		return list;
+		// String hql = "from AuOrgInfo";
+		// List list = this.baseDao.executeHQL(hql).list();
+		// return list;
+		return null;
 	}
 
 	public void enabledRole(UrpRole role) {
-		UrpRole ur = (UrpRole) this.baseDao.get(UrpRole.class, role.getId());
-		if (ur != null) {
-			this.baseDao.executeHQL("update UrpRole r set r.visible=?,r.modifyTime=? where r.id=?").setString(0, "Y").setDate(1, new Date()).setSerializable(2, ur.getId()).executeUpdate();
-		}
+		// UrpRole ur = (UrpRole) this.baseDao.get(UrpRole.class, role.getId());
+		// if (ur != null) {
+		// this.baseDao.executeHQL("update UrpRole r set r.visible=?,r.modifyTime=? where r.id=?").setString(0,
+		// "Y").setDate(1, new Date()).setSerializable(2, ur.getId()).executeUpdate();
+		// }
+
 	}
 
 	public void disabledRole(UrpRole role) {
-		UrpRole ur = (UrpRole) this.baseDao.get(UrpRole.class, role.getId());
-		if (ur != null) {
-			this.baseDao.executeHQL("update UrpRole r set r.visible=?,r.modifyTime=? where r.id=?").setString(0, "N").setDate(1, new Date()).setSerializable(2, ur.getId()).executeUpdate();
-		}
+		// UrpRole ur = (UrpRole) this.baseDao.get(UrpRole.class, role.getId());
+		// if (ur != null) {
+		// this.baseDao.executeHQL("update UrpRole r set r.visible=?,r.modifyTime=? where r.id=?").setString(0,
+		// "N").setDate(1, new Date()).setSerializable(2, ur.getId()).executeUpdate();
+		// }
 	}
 
 	public void setAclTransactionTemplate(TransactionTemplate aclTransactionTemplate) {
 		this.aclTransactionTemplate = aclTransactionTemplate;
 	}
-
 }
