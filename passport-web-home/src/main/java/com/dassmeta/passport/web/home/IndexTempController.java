@@ -9,20 +9,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class IndexTempController {
 
 	/** LOGGER */
-	// private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
+	// private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
 	@RequestMapping("/")
 	public String home(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return "login";
-
 	}
 
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "index";
+		return "home";
 
 	}
 
@@ -32,33 +31,27 @@ public class IndexController {
 
 	}
 
-	@RequestMapping("/charts")
-	public String charts(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "charts";
-
-	}
-
-	@RequestMapping("/tables")
+	@RequestMapping("/org")
 	public String tables(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "tables";
+		return "org-manage";
 
 	}
 
-	@RequestMapping("/widgets")
+	@RequestMapping("/user")
 	public String widgets(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "widgets";
+		return "user-manage";
 
 	}
 
-	@RequestMapping("/panels")
+	@RequestMapping("/role")
 	public String panels(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "panels";
+		return "role-manage";
 
 	}
 
-	@RequestMapping("/forms")
+	@RequestMapping("/permission")
 	public String forms(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "forms";
+		return "permission-manage";
 
 	}
 }

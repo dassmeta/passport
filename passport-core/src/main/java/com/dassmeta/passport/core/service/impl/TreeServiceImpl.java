@@ -2,10 +2,13 @@ package com.dassmeta.passport.core.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.dassmeta.passport.core.service.TreeService;
 import com.dassmeta.passport.dal.dataobject.AppMenu;
 import com.dassmeta.passport.dal.dataobject.AuOrgInfo;
 
+@Service("treeService")
 public class TreeServiceImpl implements TreeService {
 
 	public List<AuOrgInfo> getDepartList() {

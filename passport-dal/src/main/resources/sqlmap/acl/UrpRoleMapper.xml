@@ -25,14 +25,14 @@
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getRoleByAppId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="getRoleByAppId" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from urp_role
 		where app_id = #{appId,jdbcType=BIGINT}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getAllRole" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="getAllRole" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from urp_role

@@ -21,9 +21,9 @@ public class SSOController {
 	@Autowired
 	private UserDetailService userDetailService;
 	@Autowired
-	private ApplicationService applicationService;
+	private ApplicationService appService;
 
-	@RequestMapping("/login")
+	//@RequestMapping("/login")
 	public String login(HttpServletRequest request) throws Exception {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
@@ -46,7 +46,7 @@ public class SSOController {
 		request.getSession().setAttribute("areaCode", ru.getOrgCode());
 		request.getSession().setAttribute("specter_session_login_key", ru.getLoginId());
 		String f = request.getSession().getServletContext().getRealPath("");
-		request.getSession().setAttribute("userSystemList", this.applicationService.getUserSystemList(f));
+		request.getSession().setAttribute("userSystemList", this.appService.getUserSystemList(f));
 		return "index";
 	}
 

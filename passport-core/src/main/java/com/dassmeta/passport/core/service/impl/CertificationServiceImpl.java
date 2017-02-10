@@ -3,10 +3,12 @@ package com.dassmeta.passport.core.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dassmeta.passport.core.service.CertificationService;
 import com.dassmeta.passport.dal.ibatis.AuUserDao;
 
+@Service("certificationService")
 public class CertificationServiceImpl implements CertificationService {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 

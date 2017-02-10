@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.aspectj.util.Reflection;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.util.ReflectionUtils;
 
+import com.dassmeta.passport.util.IbatisMapperNameSpaceUtil;
 import com.dassmeta.passport.util.PageList;
 import com.dassmeta.passport.util.PageQueryUtils;
 
@@ -57,11 +60,12 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 	}
 
 	public PageList<T> findPageList(T t, int pageSize, int pageNo) {
-		return PageQueryUtils.pageQuery(getSqlSession(), "findPageListForBean", t, pageNo, pageSize);
+		IbatisMapperNameSpaceUtil.getMethodPath(this.getClass(), "pageList");
+		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", t, pageNo, pageSize);
 	}
 
 	public PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
-		return PageQueryUtils.pageQuery(getSqlSession(), "findPageListForMap", params, pageNo, pageSize);
+		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", params, pageNo, pageSize);
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

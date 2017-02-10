@@ -1,12 +1,11 @@
 package com.dassmeta.passport.core.service.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -20,6 +19,7 @@ import com.dassmeta.passport.dal.ibatis.UrpRolePermissionDao;
 import com.dassmeta.passport.dal.ibatis.UrpUserRoleDao;
 import com.dassmeta.passport.util.PageList;
 
+@Service("roleService")
 public class RoleServiceImpl implements RoleService {
 	@Autowired
 	private UrpRoleDao roleDao;

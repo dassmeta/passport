@@ -3,12 +3,14 @@ package com.dassmeta.passport.core.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dassmeta.passport.core.service.DictionaryAreacodeService;
 import com.dassmeta.passport.dal.dataobject.DictionaryAreacode;
 import com.dassmeta.passport.dal.ibatis.DictionaryAreacodeDao;
 
-public class DictionaryAreacodeImpl implements DictionaryAreacodeService {
+@Service("areacodeService")
+public class DictionaryAreacodeServiceImpl implements DictionaryAreacodeService {
 
 	@Autowired
 	private DictionaryAreacodeDao areacodeDao;

@@ -8,6 +8,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dassmeta.passport.core.service.PermissionService;
 import com.dassmeta.passport.dal.dataobject.AppAppInfo;
@@ -21,6 +22,7 @@ import com.dassmeta.passport.security.auth.entity.UserDetail;
 import com.dassmeta.passport.security.context.SecurityContext;
 import com.dassmeta.passport.util.PageList;
 
+@Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());

@@ -3,7 +3,7 @@ package com.dassmeta.passport.web.home.report;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class LoginController {
+public class LoginController1 {
 	// @Autowired
 	// private BaseService baseService;
 	// @Autowired

@@ -11,7 +11,7 @@ import com.dassmeta.passport.dal.ibatis.DictionaryAreacodeDao;
 public class DictionaryAreacodeDaoImpl extends IBatisBaseDao<DictionaryAreacode> implements DictionaryAreacodeDao {
 
 	public List<DictionaryAreacode> getAreaByAreaCode(String areaCode) {
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.DictionaryAreacodeDaoImpl.getAreaByAreaCode", areaCode);
+		return getSqlSession().selectList("getAreaByAreaCode", areaCode);
 	}
 
 	public List<DictionaryAreacode> getAjaxArea(String areaCode, String area, String nextArea) {
@@ -19,6 +19,6 @@ public class DictionaryAreacodeDaoImpl extends IBatisBaseDao<DictionaryAreacode>
 		params.put("areaCode", areaCode);
 		params.put("area", area);
 		params.put("nextArea", nextArea);
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.DictionaryAreacodeDaoImpl.getAjaxArea", params);
+		return getSqlSession().selectList("getAjaxArea", params);
 	}
 }

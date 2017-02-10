@@ -11,14 +11,14 @@ public class AppAppInfoDaoImpl extends IBatisBaseDao<AppAppInfo> implements AppA
 	// private static final Logger log = LoggerFactory.getLogger(AppAppInfoDaoImpl.class);
 
 	public List<AppAppInfo> getAllApp() {
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl.getAllApp");
+		return getSqlSession().selectList("findAllApp");
 	}
 
 	public List<AppAppInfo> getAppByShow() {
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl.getAppByShow");
+		return getSqlSession().selectList("getAppByShow");
 	}
 
 	public AppAppInfo findAppByAppCode(String appCpde) {
-		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl.findAppByAppCode", appCpde);
+		return getSqlSession().selectOne("findAppByAppCode", appCpde);
 	}
 }

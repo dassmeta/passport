@@ -7,11 +7,11 @@ import com.dassmeta.passport.dal.ibatis.UrpRolePermissionDao;
 public class UrpRolePermissionDaoImpl extends IBatisBaseDao<UrpRolePermission> implements UrpRolePermissionDao {
 
 	public void removeByPid(Long id) {
-		getSqlSession().delete("com.dassmeta.passport.dal.ibatis.impl.UrpRolePermissionDaoImpl.removeByPid", id);
+		getSqlSession().delete("removeByPid", id);
 	}
 
 	public void removeByRoleId(Long roleId) {
-		getSqlSession().delete("com.dassmeta.passport.dal.ibatis.impl.UrpRolePermissionDaoImpl.removeByRoleId", roleId);
+		getSqlSession().delete("removeByRoleId", roleId);
 	}
 
 }

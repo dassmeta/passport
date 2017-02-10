@@ -74,18 +74,18 @@
 	</update>
 
 	<!-- 后台分页查询 -->
-	<select id="findPageListForMap" resultMap="BaseResultMap">
+	<select id="pageList" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from app_app_info where deleted='N'
 		order by CREATE_TIME desc limit #{offset},#{limit}
 	</select>
 
-	<select id="findPageListForMap.count" resultType="long">
+	<select id="pageCount" resultType="long">
 		select count(*) FROM app_app_info where deleted='N'
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDaoImpl.getAllApp" resultMap="BaseResultMap">
+	<select id="findAllApp" resultMap="BaseResultMap">
 		select distinct a.* from app_app_info a
 		left join urp_permission ps
 		on a.ID=ps.app_id
@@ -94,12 +94,12 @@
 		ps.deleted='N'
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDaoImpl.getAllApp" resultMap="BaseResultMap">
+	<select id="getAllApp" resultMap="BaseResultMap">
 		select t.* from app_app_info
 		t where t.deleted='N' and t.isShow='0' order by t.sort asc
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl.findAppByAppCode" resultMap="BaseResultMap">
+	<select id="findAppByAppCode" resultMap="BaseResultMap">
 		select t.* from app_app_info
 		t where t.app_code=#{appCode,jdbcType=VARCHAR}
 	</select>

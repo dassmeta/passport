@@ -23,13 +23,13 @@
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.findByLoginName" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="findByLoginName" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from au_user deleted='N' and login_id=#{loginName,jdbcType=VARCHAR}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.isLoginUser" resultMap="BaseResultMap" parameterType="com.dassmeta.passport.dal.dataobject.AuUser">
+	<select id="isLoginUser" resultMap="BaseResultMap" parameterType="com.dassmeta.passport.dal.dataobject.AuUser">
 		select
 		<include refid="Base_Column_List" />
 		from au_user where login_id=#{loginId,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
@@ -51,7 +51,7 @@
 	</insert>
 
 
-	<update id="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.updataPasswordByLoginName" parameterType="map">
+	<update id="updataPasswordByLoginName" parameterType="map">
 		update au_user
 		set password = #{newPassword,jdbcType=VARCHAR}
 		where login_id =

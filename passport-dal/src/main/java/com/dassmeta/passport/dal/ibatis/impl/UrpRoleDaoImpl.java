@@ -9,11 +9,11 @@ import com.dassmeta.passport.dal.ibatis.UrpRoleDao;
 public class UrpRoleDaoImpl extends IBatisBaseDao<UrpRole> implements UrpRoleDao {
 
 	public List<UrpRole> getRoleByAppId(String appId) {
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getRoleByAppId", appId);
+		return getSqlSession().selectList("getRoleByAppId", appId);
 	}
 
 	public List<UrpRole> getAllRole() {
-		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl.getAllRole");
+		return getSqlSession().selectList("getAllRole");
 	}
 
 }

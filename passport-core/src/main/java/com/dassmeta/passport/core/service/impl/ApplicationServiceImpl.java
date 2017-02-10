@@ -13,6 +13,7 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dassmeta.passport.core.service.ApplicationService;
 import com.dassmeta.passport.dal.dataobject.AppAppInfo;
@@ -25,6 +26,7 @@ import com.dassmeta.passport.dal.ibatis.AuUserDao;
 import com.dassmeta.passport.dal.ibatis.UrpRoleDao;
 import com.dassmeta.passport.util.PageList;
 
+@Service("appService")
 public class ApplicationServiceImpl implements ApplicationService {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());

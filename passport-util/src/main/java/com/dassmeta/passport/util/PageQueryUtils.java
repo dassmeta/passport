@@ -24,7 +24,7 @@ public class PageQueryUtils<T> {
 	}
 
 	public static <T> PageList<T> pageQuery(SqlSession sqlSession, String statementName, Object parameterObject, int page, int pageSize) {
-		return pageQuery(sqlSession, statementName, statementName + ".count", parameterObject, page, pageSize);
+		return pageQuery(sqlSession, statementName, ".count", parameterObject, page, pageSize);
 	}
 
 	public static <T> PageList<T> pageQuery(SqlSession sqlsession, String statementName, String countStatementName, Object parameterObject, int page, int pageSize) {

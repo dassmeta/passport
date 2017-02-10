@@ -11,14 +11,14 @@ import com.dassmeta.passport.dal.ibatis.AuUserDao;
 public class AuUserDaoImpl extends IBatisBaseDao<AuUser> implements AuUserDao {
 
 	public AuUser findByLoginName(String loginName) {
-		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.findByLoginName", loginName);
+		return getSqlSession().selectOne("findByLoginName", loginName);
 	}
 
 	public int updataPasswordByLoginName(String loginName, String newPassword) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("loginName", loginName);
 		params.put("newPassword", newPassword);
-		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.updataPasswordByLoginName", params);
+		return getSqlSession().update("updataPasswordByLoginName", params);
 	}
 
 	public AuUserDetail getUserDetail(Long id) {
@@ -26,7 +26,7 @@ public class AuUserDaoImpl extends IBatisBaseDao<AuUser> implements AuUserDao {
 	}
 
 	public AuUser isLoginUser(AuUser user) {
-		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl.isLoginUser", user);
+		return getSqlSession().selectOne("isLoginUser", user);
 	}
 
 }

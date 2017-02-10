@@ -24,12 +24,12 @@
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<delete id="com.dassmeta.passport.dal.ibatis.impl.UrpRolePermissionDaoImpl.removeByPid" parameterType="java.lang.Long">
+	<delete id="removeByPid" parameterType="java.lang.Long">
 		delete from urp_role_permission
 		where permission_id = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<delete id="com.dassmeta.passport.dal.ibatis.impl.UrpRolePermissionDaoImpl.removeByRoleId" parameterType="java.lang.Long">
+	<delete id="removeByRoleId" parameterType="java.lang.Long">
 		delete from urp_role_permission
 		where role_id = #{roleId,jdbcType=BIGINT}
 	</delete>

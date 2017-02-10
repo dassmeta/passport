@@ -1,7 +1,10 @@
 package com.dassmeta.passport.core.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.dassmeta.passport.core.service.ReportService;
 
+@Service("reportService")
 public class ReportServiceImpl implements ReportService {
 	// @Autowired
 	// private BaseDao baseDao;

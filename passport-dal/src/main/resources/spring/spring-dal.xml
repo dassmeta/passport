@@ -10,4 +10,20 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd "
 	default-autowire="byName">
 
 	<bean id="appInfoDao" class="com.dassmeta.passport.dal.ibatis.impl.AppAppInfoDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="menuDao" class="com.dassmeta.passport.dal.ibatis.impl.AppMenuDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="jobDao" class="com.dassmeta.passport.dal.ibatis.impl.AuJobInfoDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="orgDao" class="com.dassmeta.passport.dal.ibatis.impl.AuOrgInfoDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="userDao" class="com.dassmeta.passport.dal.ibatis.impl.AuUserDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="userDetailDao" class="com.dassmeta.passport.dal.ibatis.impl.AuUserDetailDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="permissionDao" class="com.dassmeta.passport.dal.ibatis.impl.UrpPermissionDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="roleDao" class="com.dassmeta.passport.dal.ibatis.impl.UrpRoleDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="rolePermissionDao" class="com.dassmeta.passport.dal.ibatis.impl.UrpRolePermissionDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="userPermissionDao" class="com.dassmeta.passport.dal.ibatis.impl.UrpUserPermissionDaoImpl" parent="aclSqlSessionDao" />
+	<bean id="userRoleDao" class="com.dassmeta.passport.dal.ibatis.impl.UrpUserRoleDaoImpl" parent="aclSqlSessionDao" />
+
+	<bean id="areacodeDao" class="com.dassmeta.passport.dal.ibatis.impl.DictionaryAreacodeDaoImpl" parent="commonSqlSessionDao" />
+	<bean id="areacodeRecordDao" class="com.dassmeta.passport.dal.ibatis.impl.DictionaryAreacodeRecordDaoImpl" parent="commonSqlSessionDao" />
+	<bean id="dictionaryIntegrationDao" class="com.dassmeta.passport.dal.ibatis.impl.DictionaryIntegrationDaoImpl" parent="commonSqlSessionDao" />
+
+
 </beans>

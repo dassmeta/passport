@@ -25,7 +25,7 @@
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<delete id="com.dassmeta.passport.dal.ibatis.impl.UrpUserPermissionDaoImpl.removeByPid" parameterType="java.lang.Long">
+	<delete id="removeByPid" parameterType="java.lang.Long">
 		delete from urp_user_permission
 		where permission_id = #{id,jdbcType=BIGINT}
 	</delete>

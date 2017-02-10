@@ -12,32 +12,13 @@
 	<sql id="Base_Column_List">
 		id, user_id, role_id, create_time, modify_time
 	</sql>
-	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dassmeta.passport.dal.dataobject.UrpUserRoleExample">
-		select
-		<if test="distinct">
-			distinct
-		</if>
-		<include refid="Base_Column_List" />
-		from urp_user_role
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
-	</select>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from urp_user_role
-		where id = #{id,jdbcType=BIGINT}
-	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from urp_user_role
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<delete id="com.dassmeta.passport.dal.ibatis.impl.UrpUserRoleDaoImpl.removeByRoleId" parameterType="java.lang.Long">
+	<delete id="removeByRoleId" parameterType="java.lang.Long">
 		delete from urp_user_role
 		where role_id = #{roleId,jdbcType=BIGINT}
 	</delete>

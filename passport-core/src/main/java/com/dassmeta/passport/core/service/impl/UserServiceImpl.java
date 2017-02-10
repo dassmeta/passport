@@ -3,11 +3,14 @@ package com.dassmeta.passport.core.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.dassmeta.passport.core.service.UserService;
 import com.dassmeta.passport.dal.dataobject.AuUser;
 import com.dassmeta.passport.dal.dataobject.AuUserDetail;
 import com.dassmeta.passport.dal.dataobject.UrpPermission;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 	public void delete(AuUserDetail user) {

@@ -8,6 +8,6 @@ import com.dassmeta.passport.dal.ibatis.AuUserDetailDao;
 public class AuUserDetailDaoImpl extends IBatisBaseDao<AuUserDetail> implements AuUserDetailDao {
 
 	public UserDetailVO selectUserOrgDetailByUserId(Long id) {
-		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.AuUserDetailDao.selectUserOrgDetailByUserId", id);
+		return getSqlSession().selectOne("selectUserOrgDetailByUserId", id);
 	}
 }
