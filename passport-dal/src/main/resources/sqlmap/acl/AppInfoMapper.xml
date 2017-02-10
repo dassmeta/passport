@@ -22,19 +22,20 @@
 		DELETED, DESCRIPTION, IS_SHOW, SORT
 	</sql>
 
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from app_app_info
 		where ID = #{id,jdbcType=BIGINT}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+	<delete id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from app_app_info
 		where ID = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<insert id="insert" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo" useGeneratedKeys="true" keyProperty="id">
-		insert into app_app_info (APP_CODE, APP_NAME,
+	<insert id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.insert" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into app_app_info
+		(APP_CODE, APP_NAME,
 		APP_URL, NAME_KEY,
 		PASS_KEY,
 		SSO_ACTION, CREATE_TIME, MODIFY_TIME,
@@ -48,44 +49,48 @@
 		#{ssoAction,jdbcType=VARCHAR},
 		now(), now(),
 		#{deleted,jdbcType=VARCHAR},
-		#{description,jdbcType=VARCHAR}, #{isShow,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{isShow,jdbcType=VARCHAR},
 		#{sort,jdbcType=INTEGER})
 	</insert>
 
 
-	<update id="updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo">
+	<update id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AppAppInfo">
 		update app_app_info
 		set APP_CODE = #{appCode,jdbcType=VARCHAR},
-		APP_NAME = #{appName,jdbcType=VARCHAR},
+		APP_NAME =
+		#{appName,jdbcType=VARCHAR},
 		APP_URL = #{appUrl,jdbcType=VARCHAR},
 		NAME_KEY = #{nameKey,jdbcType=VARCHAR},
 		PASS_KEY =
 		#{passKey,jdbcType=VARCHAR},
 		SSO_ACTION = #{ssoAction,jdbcType=VARCHAR},
-		CREATE_TIME = #{createTime,jdbcType=DATE},
+		CREATE_TIME =
+		#{createTime,jdbcType=DATE},
 		MODIFY_TIME =
 		#{modifyTime,jdbcType=DATE},
 		DELETED = #{deleted,jdbcType=VARCHAR},
 		DESCRIPTION = #{description,jdbcType=VARCHAR},
 		IS_SHOW = #{isShow,jdbcType=VARCHAR},
-		SORT = #{sort,jdbcType=INTEGER}
+		SORT =
+		#{sort,jdbcType=INTEGER}
 		where ID =
 		#{id,jdbcType=BIGINT}
 	</update>
 
 	<!-- 后台分页查询 -->
-	<select id="pageList" resultMap="BaseResultMap">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from app_app_info where deleted='N'
 		order by CREATE_TIME desc limit #{offset},#{limit}
 	</select>
 
-	<select id="pageCount" resultType="long">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage.count" resultType="int">
 		select count(*) FROM app_app_info where deleted='N'
 	</select>
 
-	<select id="findAllApp" resultMap="BaseResultMap">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findAllApp" resultMap="BaseResultMap">
 		select distinct a.* from app_app_info a
 		left join urp_permission ps
 		on a.ID=ps.app_id
@@ -94,12 +99,12 @@
 		ps.deleted='N'
 	</select>
 
-	<select id="getAllApp" resultMap="BaseResultMap">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.getAllApp" resultMap="BaseResultMap">
 		select t.* from app_app_info
 		t where t.deleted='N' and t.isShow='0' order by t.sort asc
 	</select>
 
-	<select id="findAppByAppCode" resultMap="BaseResultMap">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findAppByAppCode" resultMap="BaseResultMap">
 		select t.* from app_app_info
 		t where t.app_code=#{appCode,jdbcType=VARCHAR}
 	</select>

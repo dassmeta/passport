@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import org.aspectj.util.Reflection;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.util.ReflectionUtils;
 
 import com.dassmeta.passport.util.IbatisMapperNameSpaceUtil;
 import com.dassmeta.passport.util.PageList;

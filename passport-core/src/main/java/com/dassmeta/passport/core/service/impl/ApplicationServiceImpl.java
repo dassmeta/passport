@@ -29,7 +29,7 @@ import com.dassmeta.passport.util.PageList;
 @Service("appService")
 public class ApplicationServiceImpl implements ApplicationService {
 
-	protected final Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(ApplicationServiceImpl.class);
 
 	@Autowired
 	private AppAppInfoDao appInfoDao;
@@ -44,19 +44,31 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private UrpRoleDao roleDao;
 
 	public PageList<AppAppInfo> findForPage(Map<String, Object> params, int pageSize, int pageNo) {
+		if (logger.isInfoEnabled()) {
+			logger.info("findForPage invoke,params:{},pageSize:{},pageNo:{}", params, pageSize, pageNo);
+		}
 		return appInfoDao.findPageList(params, pageSize, pageNo);
 	}
 
 	public void delete(AppAppInfo app) {
 		app.setDeleted("Y");
+		if (logger.isInfoEnabled()) {
+			logger.info("delete invoke,AppAppInfo:{}", app);
+		}
 		appInfoDao.update(app);
 	}
 
 	public List<AppAppInfo> getAllApp() {
+		if (logger.isInfoEnabled()) {
+			logger.info("getAllApp invoke");
+		}
 		return appInfoDao.getAllApp();
 	}
 
 	public void save(AppAppInfo app) {
+		if (logger.isInfoEnabled()) {
+			logger.info("save invoke,create app:{}", app);
+		}
 		long appId = appInfoDao.create(app);
 
 		String appname = app.getAppName();
@@ -67,14 +79,23 @@ public class ApplicationServiceImpl implements ApplicationService {
 		menu.setMenuOrder(1);
 		menu.setParentId(Long.valueOf(0L));
 		menu.setShowStyle("1");
+		if (logger.isInfoEnabled()) {
+			logger.info("save invoke,create menu:{}", menu);
+		}
 		menuDao.create(menu);
 	}
 
 	public List<UrpRole> getRoleByAppId(String appId) {
+		if (logger.isInfoEnabled()) {
+			logger.info("getRoleByAppId invoke,appId:{}", appId);
+		}
 		return roleDao.getRoleByAppId(appId);
 	}
 
 	public List<AppAppInfo> getApp() {
+		if (logger.isInfoEnabled()) {
+			logger.info("getApp invoke");
+		}
 		return appInfoDao.getAppByShow();
 	}
 
@@ -118,6 +139,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	public AuUser updatePassword(String loginName, String password) {
+		if (logger.isInfoEnabled()) {
+			logger.info("updatePassword invoke,loginName:{},password:{}", loginName, password);
+		}
 		return userDao.findByLoginName(loginName);
 	}
 
@@ -130,6 +154,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 		// entity.setPassword(psw);
 		// this.baseDao.update(entity);
 		// }
+
+		if (logger.isInfoEnabled()) {
+			logger.info("updataPasswordPass invoke,loginName:{},newPassword:{}", loginName, newPassword);
+		}
 		userDao.updataPasswordByLoginName(loginName, newPassword);
 
 		return null;
