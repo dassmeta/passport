@@ -16,30 +16,30 @@ import com.dassmeta.passport.util.PageList;
  * @creation 2017年1月19日
  */
 public interface IBaseDao<T> {
-	public T findByPrimaryKey(Serializable id) throws DataAccessException;
+	T findByPrimaryKey(Serializable id) throws DataAccessException;
 
-	public long create(T t) throws DataAccessException;
+	long create(T t) throws DataAccessException;
 
-	public int update(T t) throws DataAccessException;
+	int update(T t) throws DataAccessException;
 
-	public int remove(T t) throws DataAccessException;
+	int remove(T t) throws DataAccessException;
 
-	public int saveOrUpdate(T t) throws DataAccessException;
+	int saveOrUpdate(T t) throws DataAccessException;
 
-	public int remove(Serializable id) throws DataAccessException;
+	int remove(Serializable id) throws DataAccessException;
 
-	public int batchSave(List<T> paramList) throws DataAccessException;
+	int batchSave(List<T> paramList) throws DataAccessException;
 
-	public List<T> batchSaveReturnIds(List<T> paramList) throws DataAccessException;
+	List<T> batchSaveReturnIds(List<T> paramList) throws DataAccessException;
 
-	public int batchUpdate(List<T> paramList) throws DataAccessException;
+	int batchUpdate(List<T> paramList) throws DataAccessException;
 
-	public PageList<T> findPageList(T t, int pageSize, int pageNo);
+	PageList<T> findPageList(T t, int pageSize, int pageNo);
 
-	public PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo);
+	PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo);
 
-	public JdbcTemplate getJdbcTemplate();
+	JdbcTemplate getJdbcTemplate();
 
-	public void setJdbcTemplate(JdbcTemplate paramJdbcTemplate);
+	void setJdbcTemplate(JdbcTemplate paramJdbcTemplate);
 
 }

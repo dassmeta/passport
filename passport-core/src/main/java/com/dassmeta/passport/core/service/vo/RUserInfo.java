@@ -1,6 +1,12 @@
 package com.dassmeta.passport.core.service.vo;
 
-public class RUserInfo {
+import java.io.Serializable;
+
+public class RUserInfo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5560253151001647959L;
 	private Long id;
 	private Long userId;
 	private String loginId;

@@ -151,13 +151,29 @@ public class OnlineUser implements Serializable {
 		this.jobName = jobName;
 	}
 
-	public boolean equals(Object anObject) {
-		if ((anObject instanceof OnlineUser)) {
-			OnlineUser user = (OnlineUser) anObject;
-			if (user != null) {
-				return this.sessionId.equals(user.getSessionId());
-			}
-		}
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OnlineUser other = (OnlineUser) obj;
+		if (sessionId == null) {
+			if (other.sessionId != null)
+				return false;
+		} else if (!sessionId.equals(other.sessionId))
+			return false;
+		return true;
+	}
+
 }

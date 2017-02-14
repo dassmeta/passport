@@ -86,7 +86,7 @@
 		order by CREATE_TIME desc limit #{offset},#{limit}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage.count" resultType="int">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage.count" resultType="Integer">
 		select count(*) FROM app_app_info where deleted='N'
 	</select>
 
