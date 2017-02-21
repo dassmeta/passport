@@ -19,31 +19,31 @@ public class DictionaryIntegrationDaoImpl extends SqlSessionDaoSupport implement
 	private JdbcTemplate jdbcTemplate;
 
 	public DictionaryIntegration findByPrimaryKey(Serializable id) throws DataAccessException {
-		return getSqlSession().selectOne("selectByPrimaryKey", id);
+		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.selectByPrimaryKey", id);
 	}
 
 	public long create(DictionaryIntegration t) throws DataAccessException {
-		return getSqlSession().insert("insert", t);
+		return getSqlSession().insert("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.insert", t);
 	}
 
 	public int update(DictionaryIntegration t) throws DataAccessException {
-		return getSqlSession().update("update", t);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.update", t);
 	}
 
 	public int remove(DictionaryIntegration t) throws DataAccessException {
-		return getSqlSession().delete("remove", t);
+		return getSqlSession().delete("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.remove", t);
 	}
 
 	public int remove(Serializable id) throws DataAccessException {
-		return getSqlSession().delete("deleteByPrimaryKey", id);
+		return getSqlSession().delete("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.deleteByPrimaryKey", id);
 	}
 
 	public int saveOrUpdate(DictionaryIntegration t) throws DataAccessException {
-		return getSqlSession().update("saveOrUpdate", t);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.saveOrUpdate", t);
 	}
 
 	public int batchSave(List<DictionaryIntegration> paramList) throws DataAccessException {
-		return getSqlSession().insert("batchSave", paramList);
+		return getSqlSession().insert("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.batchSave", paramList);
 	}
 
 	public List<DictionaryIntegration> batchSaveReturnIds(List<DictionaryIntegration> paramList) throws DataAccessException {
@@ -51,16 +51,20 @@ public class DictionaryIntegrationDaoImpl extends SqlSessionDaoSupport implement
 	}
 
 	public int batchUpdate(List<DictionaryIntegration> paramList) throws DataAccessException {
-		return getSqlSession().update("batchUpdate", paramList);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.batchUpdate", paramList);
 	}
 
 	public PageList<DictionaryIntegration> findPageList(DictionaryIntegration t, int pageSize, int pageNo) {
-		IbatisMapperNameSpaceUtil.getMethodPath(this.getClass(), "pageList");
-		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", t, pageNo, pageSize);
+		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.pageList", t, pageNo, pageSize);
 	}
 
 	public PageList<DictionaryIntegration> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
-		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", params, pageNo, pageSize);
+		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.pageList", params, pageNo, pageSize);
+	}
+
+	@Override
+	public List<DictionaryIntegration> findAll() {
+		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.findAll");
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

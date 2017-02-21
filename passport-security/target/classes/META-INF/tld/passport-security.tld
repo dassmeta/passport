@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd" version="2.0">
+	<description>passport tlds</description>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>passprot-security</short-name>
+	<uri>/passport-security-tags</uri>
+	<small-icon></small-icon>
+
+	<tag>
+		<description>
+			AuthConstants Tag,the authentication constants
+		</description>
+		<name>authconstant</name>
+		<tag-class>
+			com.dassmeta.passport.security.auth.tag.AuthConstantsTag
+		</tag-class>
+		<body-content>scriptless</body-content>
+
+		<attribute>
+			<name>value</name>
+			<description><![CDATA[
+		   value must be 'username' or 'password' or 'captcha' or 'login_url' or 'logout_url'
+		  ]]></description>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

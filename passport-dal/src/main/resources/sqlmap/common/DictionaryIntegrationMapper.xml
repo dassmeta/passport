@@ -20,6 +20,13 @@
 		from dictionary_integration
 		where ID = #{id,jdbcType=BIGINT}
 	</select>
+
+	<select id="com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from dictionary_integration
+	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from dictionary_integration
 		where ID = #{id,jdbcType=BIGINT}
