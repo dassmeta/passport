@@ -413,5 +413,6 @@
 		<module>passport-util</module>
 		<module>passport-web-home</module>
 		<module>passport-security</module>
-	</modules>
+    <module>passport-taglib</module>
+  </modules>
 </project>

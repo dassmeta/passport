@@ -5,10 +5,6 @@
 <html lang="zh-CN">
 <head>
 <%@ include file="/common/meta.jsp"%>
-<!-- Bootstrap -->
-<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${ctx}/css/datepicker3.css" rel="stylesheet">
-<link href="${ctx}/css/styles.css" rel="stylesheet">
 </head>
 <body>
 	<div class="row">
@@ -16,7 +12,7 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Login</div>
 				<div class="panel-body">
-					<form role="form" action="${ctx}<passport-security:authconstant value='login_url'/>">
+					<form role="form" method="post" action="${ctx}<passport-security:authconstant value='login_url'/>">
 						<fieldset>
 							<div class="form-group">
 								<input class="form-control" placeholder="E-mail" name="<passport-security:authconstant value='username'/>" type="email" autofocus="" />
@@ -28,7 +24,7 @@
 								<label> <input name="remember" type="checkbox" value="Remember Me" />Remember Me
 								</label>
 							</div>
-							<a href="index.html" class="btn btn-primary">Login</a>
+							<button class="btn btn-primary " type="submit">Login</button>
 						</fieldset>
 					</form>
 				</div>
@@ -37,35 +33,7 @@
 		<!-- /.col-->
 	</div>
 	<!-- /.row -->
-
-	<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
-	<script src="${ctx}/js/bootstrap.min.js"></script>
-	<script src="${ctx}/js/chart.min.js"></script>
-	<script src="${ctx}/js/chart-data.js"></script>
-	<script src="${ctx}/js/easypiechart.js"></script>
-	<script src="${ctx}/js/easypiechart-data.js"></script>
-	<script src="${ctx}/js/bootstrap-datepicker.js"></script>
-	<script>
-		!function($) {
-			$(document)
-					.on(
-							"click",
-							"ul.nav li.parent > a > span.icon",
-							function() {
-								$(this).find('em:first').toggleClass(
-										"glyphicon-minus");
-							});
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function() {
-			if ($(window).width() > 768)
-				$('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function() {
-			if ($(window).width() <= 767)
-				$('#sidebar-collapse').collapse('hide')
-		})
-	</script>
+	<%@ include file="/common/footer.jsp"%>
 </body>
+
 </html>

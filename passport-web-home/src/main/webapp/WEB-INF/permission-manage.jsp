@@ -5,11 +5,6 @@
 <html lang="zh-CN">
 <head>
 <%@ include file="/common/meta.jsp"%>
-<!-- Bootstrap -->
-<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${ctx}/css/bootstrap-theme.min.css" rel="stylesheet">
-<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
-<script src="${ctx}/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -101,5 +96,6 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/common/footer.jsp"%>
 </body>
 </html>

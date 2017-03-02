@@ -5,11 +5,6 @@
 <html lang="zh-CN">
 <head>
 <%@ include file="/common/meta.jsp"%>
-<!-- Bootstrap -->
-<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${ctx}/css/bootstrap-theme.min.css" rel="stylesheet">
-<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
-<script src="${ctx}/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -37,23 +32,23 @@
 								<td>${item.createTime}</td>
 								<td><button type="button" class="btn btn-primary btn-xs">定制菜单</button>
 									<button type="button" class="btn btn-primary btn-xs">编辑</button>
-									<button type="button" class="btn btn-primary btn-xs">删除</button>
-								</td>
+									<button type="button" class="btn btn-primary btn-xs">删除</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<ul class="pagination">
-					<li><a href="#">Prev</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">Next</a></li>
+				<ul class="pager">
+					<li class="previous"><a href="your/nice/url">«</a></li>
+					<li><a href="your/nice/url">1</a></li>
+					<li class="active"><a href="your/nice/url">2</a></li>
+					<li><a href="your/nice/url">3</a></li>
+					<li><a href="your/nice/url">4</a></li>
+					<li><a href="your/nice/url">5</a></li>
+					<li class="next"><a href="your/nice/url">»</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<%@ include file="/common/footer.jsp"%>
 </body>
 </html>

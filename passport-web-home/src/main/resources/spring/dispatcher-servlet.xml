@@ -20,6 +20,7 @@
 	<mvc:resources location="/upload/" mapping="/upload/**" />
 	<mvc:resources location="/fonts/" mapping="/fonts/**" />
 	<mvc:resources location="/tld/" mapping="/tld/**" />
+	<mvc:resources location="/dist/" mapping="/dist/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/" />
