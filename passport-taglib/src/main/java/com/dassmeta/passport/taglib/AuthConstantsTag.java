@@ -4,65 +4,61 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.dassmeta.passport.core.service.cache.CacheModel;
-import com.dassmeta.passport.core.service.cache.DictionaryIntegrationCacheService;
 import com.dassmeta.passport.security.auth.AuthConstants;
 
-public class AuthConstantsTag extends SpringSuportTag {
+public class AuthConstantsTag extends SimpleTagSupport {
 
-	private DictionaryIntegrationCacheService dictionaryIntegrationCacheService = null;
-
+	private String type;
 	private String value;
 
-	private String getConstant(String value) {
-		CacheModel authConstantCache = dictionaryIntegrationCacheService.getCacheByName(AuthConstants.AUTH_CONSTANTS_KEY).get(value);
-		if (authConstantCache != null) {
-			return authConstantCache.getValue();
+	public void doTag() throws JspException, IOException {
+		if ((StringUtils.isNotBlank(this.type)) && (StringUtils.isNotBlank(this.value))) {
+			JspWriter out = getJspContext().getOut();
+			out.print(getConstant(this.type, this.value));
+		} else {
+		}
+	}
+
+	private String getConstant(String type, String value) {
+		if (StringUtils.equals(AuthConstants.AUTH_TYPE_PARAMETER, type)) {
+			return getParamKey(value);
+		}
+		if (StringUtils.equals(AuthConstants.AUTH_TYPE_URL, type)) {
+			return getURLKey(value);
 		}
 		return "";
 	}
 
-	@Override
-	protected void initCustomBeans() {
-		dictionaryIntegrationCacheService = getSpringContext().getBean(DictionaryIntegrationCacheService.class);
-	}
-
-	@Override
-	void doTagWithSpring() throws JspException, IOException {
-		if (StringUtils.isNotBlank(this.value)) {
-			JspWriter out = getJspContext().getOut();
-			out.print(getConstant(this.value));
-		} else {
+	private String getParamKey(String value) {
+		if (StringUtils.equals(AuthConstants.PARAMS_LOGIN__ID_KEY, value)) {
+			return AuthConstants.PARAMS_LOGIN_ID;
 		}
-
+		if (StringUtils.equals(AuthConstants.PARAMS_PASSWORD_KEY, value)) {
+			return AuthConstants.PARAMS_PASSWORD;
+		}
+		if (StringUtils.equals(AuthConstants.PARAMS_CAPTCHA_KEY, value)) {
+			return AuthConstants.PARAMS_CAPTCHA;
+		}
+		return "";
 	}
 
-	// private String getParamKey(String value) {
-	// if (StringUtils.equals("loginId", value)) {
-	// return "passport_security_params_username";
-	// }
-	// if (StringUtils.equals("password", value)) {
-	// return "passport_security_params_password";
-	// }
-	// if (StringUtils.equals("captcha", value)) {
-	// return "passport_security_params_captcha";
-	// }
-	// return "";
-	// }
-	//
-	// private String getURLKey(String value) {
-	// if (StringUtils.equals("login_url", value)) {
-	// return "/passport_security_login_on";
-	// }
-	// if (StringUtils.equals("logout_url", value)) {
-	// return "/passport_security_login_out";
-	// }
-	// return "";
-	//
-	// }
+	private String getURLKey(String value) {
+		if (StringUtils.equals(AuthConstants.LOGIN_ON_URL_KEY, value)) {
+			return AuthConstants.LOGIN_ON_URL;
+		}
+		if (StringUtils.equals(AuthConstants.AUTH_URL_LOGOUT_KEY, value)) {
+			return AuthConstants.LOGIN_OUT_URL;
+		}
+		return "";
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public void setValue(String value) {
 		this.value = value;

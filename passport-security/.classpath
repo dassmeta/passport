@@ -38,7 +38,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/mybatis/mybatis-spring/1.2.2/mybatis-spring-1.2.2.jar" sourcepath="M2_REPO/org/mybatis/mybatis-spring/1.2.2/mybatis-spring-1.2.2-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/mchange/c3p0/0.9.5/c3p0-0.9.5.jar" sourcepath="M2_REPO/com/mchange/c3p0/0.9.5/c3p0-0.9.5-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/mchange/mchange-commons-java/0.2.9/mchange-commons-java-0.2.9.jar" sourcepath="M2_REPO/com/mchange/mchange-commons-java/0.2.9/mchange-commons-java-0.2.9-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.6.2/aspectjweaver-1.6.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.8.1/aspectjweaver-1.8.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21.jar" sourcepath="M2_REPO/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar" sourcepath="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/ch/qos/logback/logback-core/1.1.2/logback-core-1.1.2.jar"/>
@@ -48,7 +48,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/junit/junit/4.8.2/junit-4.8.2.jar" sourcepath="M2_REPO/junit/junit/4.8.2/junit-4.8.2-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.8.2/junit-4.8.2-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/cglib/cglib/3.1/cglib-3.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/4.2/asm-4.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.9/commons-codec-1.9.jar" sourcepath="M2_REPO/commons-codec/commons-codec/1.9/commons-codec-1.9-sources.jar"/>
@@ -74,17 +74,17 @@
 	<classpathentry kind="var" path="M2_REPO/com/alibaba/druid/1.0.12/druid-1.0.12.jar" sourcepath="M2_REPO/com/alibaba/druid/1.0.12/druid-1.0.12-sources.jar"/>
 	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/lib/jconsole.jar"/>
 	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/lib/tools.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/passport-dal"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/passport-dal"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

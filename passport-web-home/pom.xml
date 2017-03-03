@@ -251,7 +251,7 @@
 
 		<dependency>
 			<groupId>com.dassmeta.passport</groupId>
-			<artifactId>passport-core</artifactId>
+			<artifactId>passport-core-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -276,6 +276,12 @@
 		<dependency>
 			<groupId>com.dassmeta.passport</groupId>
 			<artifactId>passport-util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dassmeta.passport</groupId>
+			<artifactId>passport-taglib</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

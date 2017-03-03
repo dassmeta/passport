@@ -7,9 +7,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.dassmeta.passport.security.auth.AuthConstants;
-
-public class AuthErrorTag extends SimpleTagSupport implements AuthConstants {
+public class AuthErrorTag extends SimpleTagSupport {
 	private String exception;
 	private String clear;
 

@@ -40,7 +40,7 @@ public interface DictionaryIntegrationDao {
 
 	public PageList<DictionaryIntegration> findPageList(Map<String, Object> params, int pageSize, int pageNo);
 
-	public List<com.dassmeta.passport.dal.dataobject.DictionaryIntegration> findAll();
+	public List<DictionaryIntegration> findAll();
 
 	public JdbcTemplate getJdbcTemplate();
 

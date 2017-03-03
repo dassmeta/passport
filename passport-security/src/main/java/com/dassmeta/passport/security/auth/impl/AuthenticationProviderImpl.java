@@ -15,7 +15,7 @@ import com.dassmeta.passport.security.auth.service.CaptchaValidateService;
 import com.dassmeta.passport.security.auth.service.UserDetailService;
 import com.dassmeta.passport.security.context.SecurityContext;
 
-public class AuthenticationProviderImpl implements AuthenticationProvider, AuthConstants {
+public class AuthenticationProviderImpl implements AuthenticationProvider {
 	protected final Log logger = LogFactory.getLog(getClass());
 	private String loginURL;
 	private String defaultTargetURL;

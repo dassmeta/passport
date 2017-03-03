@@ -4,7 +4,8 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="passport-core-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/passport-core/passport-core">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <dependent-module archiveName="passport-core-service-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/passport-core-service/passport-core-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="passport-dal-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/passport-dal/passport-dal">
@@ -17,6 +18,9 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="passport-util-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/passport-util/passport-util">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="passport-taglib-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/passport-taglib/passport-taglib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="passport-web-home"/>

@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.dassmeta.passport.dal.dataobject.DictionaryIntegration;
 import com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao;
-import com.dassmeta.passport.util.IbatisMapperNameSpaceUtil;
 import com.dassmeta.passport.util.PageList;
 import com.dassmeta.passport.util.PageQueryUtils;
 
@@ -62,7 +61,6 @@ public class DictionaryIntegrationDaoImpl extends SqlSessionDaoSupport implement
 		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.pageList", params, pageNo, pageSize);
 	}
 
-	@Override
 	public List<DictionaryIntegration> findAll() {
 		return getSqlSession().selectList("com.dassmeta.passport.dal.ibatis.DictionaryIntegrationDao.findAll");
 	}

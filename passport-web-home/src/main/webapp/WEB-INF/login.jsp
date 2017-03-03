@@ -12,13 +12,13 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Login</div>
 				<div class="panel-body">
-					<form role="form" method="post" action="${ctx}<passport-security:authconstant value='login_url'/>">
+					<form role="form" method="post" action="${ctx}<passport-security:authconstant type='url' value='login_url'/>">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="<passport-security:authconstant value='username'/>" type="email" autofocus="" />
+								<input class="form-control" placeholder="E-mail" name="<passport-security:authconstant type='parameter' value='loginid'/>" type="email" autofocus="" />
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="<passport-security:authconstant value='password'/>" type="password" value="" />
+								<input class="form-control" placeholder="Password" name="<passport-security:authconstant type='parameter' value='password'/>" type="password" value="" />
 							</div>
 							<div class="checkbox">
 								<label> <input name="remember" type="checkbox" value="Remember Me" />Remember Me

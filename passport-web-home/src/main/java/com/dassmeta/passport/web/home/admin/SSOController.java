@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dassmeta.passport.core.service.ApplicationService;
 import com.dassmeta.passport.core.service.UserDetailService;
@@ -13,6 +14,7 @@ import com.dassmeta.passport.core.service.UserService;
 import com.dassmeta.passport.core.service.vo.RUserInfo;
 import com.dassmeta.passport.dal.dataobject.AuUser;
 import com.dassmeta.passport.dal.dataobject.UserDetailVO;
+import com.dassmeta.passport.security.auth.AuthConstants;
 
 @Controller
 public class SSOController {
@@ -23,7 +25,7 @@ public class SSOController {
 	@Autowired
 	private ApplicationService appService;
 
-	@RequestMapping(value=AuthConstants.)
+	@RequestMapping(value = AuthConstants.LOGIN_ON_URL, method = RequestMethod.POST)
 	public String login(HttpServletRequest request) throws Exception {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");

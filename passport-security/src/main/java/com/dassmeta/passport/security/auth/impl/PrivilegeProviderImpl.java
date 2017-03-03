@@ -11,13 +11,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 
-import com.dassmeta.passport.security.auth.AuthConstants;
 import com.dassmeta.passport.security.auth.PrivilegeProvider;
 import com.dassmeta.passport.security.auth.entity.Permission;
 import com.dassmeta.passport.security.auth.entity.UserDetail;
 import com.dassmeta.passport.security.context.SecurityContext;
 
-public class PrivilegeProviderImpl implements PrivilegeProvider, InitializingBean, AuthConstants {
+public class PrivilegeProviderImpl implements PrivilegeProvider, InitializingBean {
 	protected final Log logger = LogFactory.getLog(getClass());
 	private String[] noControlResource;
 	private List<Pattern> patterns;

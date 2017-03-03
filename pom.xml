@@ -11,12 +11,12 @@
 		<springframework.version>4.1.4.RELEASE</springframework.version>
 		<org.mybatis.mybatis>3.2.8</org.mybatis.mybatis>
 		<org.mybatis.mybatis-spring>1.2.2</org.mybatis.mybatis-spring>
-		<junit.version>4.8.2</junit.version>
+		<junit.version>4.12</junit.version>
 		<mysql-connector-java>5.1.21</mysql-connector-java>
 		<com.mchange.c3p0>0.9.5</com.mchange.c3p0>
 		<javax.servlet.javax.servlet-api>3.0.1</javax.servlet.javax.servlet-api>
 		<javax.servlet.jsp.jsp-api>2.2</javax.servlet.jsp.jsp-api>
-		<org.aspectj.aspectjweaver>1.6.2</org.aspectj.aspectjweaver>
+		<org.aspectj.aspectjweaver>1.8.1</org.aspectj.aspectjweaver>
 		<log4j>1.2.14</log4j>
 		<jstl>1.2</jstl>
 		<org.freemarker.freemarker>2.3.22</org.freemarker.freemarker>
@@ -143,6 +143,11 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>${org.aspectj.aspectjweaver}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId></artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
@@ -409,10 +414,10 @@
 	<modules>
 		<module>passport-model</module>
 		<module>passport-dal</module>
-		<module>passport-core</module>
+		<module>passport-core-service</module>
 		<module>passport-util</module>
 		<module>passport-web-home</module>
 		<module>passport-security</module>
-    <module>passport-taglib</module>
-  </modules>
+		<module>passport-taglib</module>
+	</modules>
 </project>
