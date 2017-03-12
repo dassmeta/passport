@@ -21,20 +21,21 @@
 		show_style, create_time, modify_time, app_id
 	</sql>
 
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="com.dassmeta.passport.dal.ibatis.AppMenuDao.selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from app_menu
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+	<delete id="com.dassmeta.passport.dal.ibatis.AppMenuDao.deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from app_menu
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 
-	<insert id="insert" parameterType="com.dassmeta.passport.dal.dataobject.AppMenu" useGeneratedKeys="true" keyProperty="id">
-		insert into app_menu (parent_id, menu_code,
+	<insert id="com.dassmeta.passport.dal.ibatis.AppMenuDao.insert" parameterType="com.dassmeta.passport.dal.dataobject.AppMenu" useGeneratedKeys="true" keyProperty="id">
+		insert into app_menu
+		(parent_id, menu_code,
 		menu_name, menu_order,
 		permission_key,
 		target, description, show_style,
@@ -46,11 +47,12 @@
 		#{menuOrder,jdbcType=INTEGER}, #{permissionKey,jdbcType=VARCHAR},
 		#{target,jdbcType=VARCHAR},
 		#{description,jdbcType=VARCHAR}, #{showStyle,jdbcType=VARCHAR},
-		now(), now(), #{appId,jdbcType=BIGINT}
+		now(), now(),
+		#{appId,jdbcType=BIGINT}
 		)
 	</insert>
 
-	<update id="updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AppMenu">
+	<update id="com.dassmeta.passport.dal.ibatis.AppMenuDao.updateByPrimaryKey" parameterType="com.dassmeta.passport.dal.dataobject.AppMenu">
 		update app_menu
 		set parent_id = #{parentId,jdbcType=BIGINT},
 		menu_code = #{menuCode,jdbcType=VARCHAR},
@@ -58,13 +60,15 @@
 		menu_order = #{menuOrder,jdbcType=INTEGER},
 		permission_key = #{permissionKey,jdbcType=VARCHAR},
 		target = #{target,jdbcType=VARCHAR},
-		description = #{description,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR},
 		show_style =
 		#{showStyle,jdbcType=VARCHAR},
 		create_time =
 		#{createTime,jdbcType=DATE},
 		modify_time = #{modifyTime,jdbcType=DATE},
 		app_id = #{appId,jdbcType=BIGINT}
-		where id = #{id,jdbcType=BIGINT}
+		where id
+		= #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

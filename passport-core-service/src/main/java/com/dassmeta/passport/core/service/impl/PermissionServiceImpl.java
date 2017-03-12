@@ -73,6 +73,7 @@ public class PermissionServiceImpl implements PermissionService {
 		return this.permissionDao.findByAppId(app.getId());
 	}
 
+	@Override
 	public boolean ifAllGranted(String... permissionKey) {
 		Set<String> granted = getGranted();
 		if (containsAll(granted, permissionKey)) {
@@ -81,6 +82,7 @@ public class PermissionServiceImpl implements PermissionService {
 		return false;
 	}
 
+	@Override
 	public boolean ifAnyGranted(String... permissionKey) {
 		Set<String> granted = getGranted();
 		if (containsAny(granted, permissionKey)) {
@@ -89,6 +91,7 @@ public class PermissionServiceImpl implements PermissionService {
 		return false;
 	}
 
+	@Override
 	public boolean ifNotGranted(String... permissionKey) {
 		Set<String> granted = getGranted();
 		if (!containsAll(granted, permissionKey)) {

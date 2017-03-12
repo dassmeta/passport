@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.dassmeta.passport.dal.dataobject.AppMenu;
 import com.dassmeta.passport.dal.ibatis.AppMenuDao;
-import com.dassmeta.passport.util.IbatisMapperNameSpaceUtil;
 import com.dassmeta.passport.util.PageList;
 import com.dassmeta.passport.util.PageQueryUtils;
 
@@ -25,31 +24,31 @@ public class AppMenuDaoImpl extends SqlSessionDaoSupport implements AppMenuDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public AppMenu findByPrimaryKey(Serializable id) throws DataAccessException {
-		return getSqlSession().selectOne("selectByPrimaryKey", id);
+		return getSqlSession().selectOne("com.dassmeta.passport.dal.ibatis.AppMenuDao.selectByPrimaryKey", id);
 	}
 
 	public long create(AppMenu t) throws DataAccessException {
-		return getSqlSession().insert("insert", t);
+		return getSqlSession().insert("com.dassmeta.passport.dal.ibatis.AppMenuDao.insert", t);
 	}
 
 	public int update(AppMenu t) throws DataAccessException {
-		return getSqlSession().update("update", t);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.AppMenuDao.update", t);
 	}
 
 	public int remove(AppMenu t) throws DataAccessException {
-		return getSqlSession().delete("remove", t);
+		return getSqlSession().delete("com.dassmeta.passport.dal.ibatis.AppMenuDao.remove", t);
 	}
 
 	public int remove(Serializable id) throws DataAccessException {
-		return getSqlSession().delete("deleteByPrimaryKey", id);
+		return getSqlSession().delete("com.dassmeta.passport.dal.ibatis.AppMenuDao.deleteByPrimaryKey", id);
 	}
 
 	public int saveOrUpdate(AppMenu t) throws DataAccessException {
-		return getSqlSession().update("saveOrUpdate", t);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.AppMenuDao.saveOrUpdate", t);
 	}
 
 	public int batchSave(List<AppMenu> paramList) throws DataAccessException {
-		return getSqlSession().insert("batchSave", paramList);
+		return getSqlSession().insert("com.dassmeta.passport.dal.ibatis.AppMenuDao.batchSave", paramList);
 	}
 
 	public List<AppMenu> batchSaveReturnIds(List<AppMenu> paramList) throws DataAccessException {
@@ -57,16 +56,15 @@ public class AppMenuDaoImpl extends SqlSessionDaoSupport implements AppMenuDao {
 	}
 
 	public int batchUpdate(List<AppMenu> paramList) throws DataAccessException {
-		return getSqlSession().update("batchUpdate", paramList);
+		return getSqlSession().update("com.dassmeta.passport.dal.ibatis.AppMenuDao.batchUpdate", paramList);
 	}
 
 	public PageList<AppMenu> findPageList(AppMenu t, int pageSize, int pageNo) {
-		IbatisMapperNameSpaceUtil.getMethodPath(this.getClass(), "pageList");
-		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", t, pageNo, pageSize);
+		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.AppMenuDao.pageList", t, pageNo, pageSize);
 	}
 
 	public PageList<AppMenu> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
-		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", params, pageNo, pageSize);
+		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.AppMenuDao.pageList", params, pageNo, pageSize);
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

@@ -59,8 +59,8 @@ public class AppAppInfoDaoImpl extends SqlSessionDaoSupport implements AppAppInf
 		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage", t, pageNo, pageSize);
 	}
 
-	public PageList<AppAppInfo> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
-		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage", params, pageNo, pageSize);
+	public PageList<AppAppInfo> findPageList(Map<String, Object> params, int pageSize, int currentPage) {
+		return PageQueryUtils.pageQuery(getSqlSession(), "com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage", params, currentPage, pageSize);
 	}
 
 	public List<AppAppInfo> getAllApp() {

@@ -7,7 +7,7 @@
 		<version>1.0</version>
 	</parent>
 	<artifactId>passport-core-service</artifactId>
-	<name>passport-core</name>
+	<name>passport-core-service</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

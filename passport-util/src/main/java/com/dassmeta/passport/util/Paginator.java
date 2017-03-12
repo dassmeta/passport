@@ -17,8 +17,17 @@ public class Paginator implements Serializable, Cloneable {
 
 	public static final int UNKNOWN_ITEMS = Integer.MAX_VALUE;
 
+	/**
+	 * 当前页
+	 */
 	private int page;
+	/**
+	 * 总条数
+	 */
 	private int items;
+	/**
+	 * 页大小
+	 */
 	private int itemsPerPage;
 
 	public Paginator() {

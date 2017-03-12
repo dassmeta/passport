@@ -62,40 +62,81 @@
 		#{appName,jdbcType=VARCHAR},
 		APP_URL = #{appUrl,jdbcType=VARCHAR},
 		NAME_KEY = #{nameKey,jdbcType=VARCHAR},
-		PASS_KEY =
-		#{passKey,jdbcType=VARCHAR},
+		PASS_KEY = #{passKey,jdbcType=VARCHAR},
 		SSO_ACTION = #{ssoAction,jdbcType=VARCHAR},
-		CREATE_TIME =
-		#{createTime,jdbcType=DATE},
-		MODIFY_TIME =
-		#{modifyTime,jdbcType=DATE},
+		CREATE_TIME
+		= #{createTime,jdbcType=DATE},
+		MODIFY_TIME = #{modifyTime,jdbcType=DATE},
 		DELETED = #{deleted,jdbcType=VARCHAR},
 		DESCRIPTION = #{description,jdbcType=VARCHAR},
 		IS_SHOW = #{isShow,jdbcType=VARCHAR},
-		SORT =
-		#{sort,jdbcType=INTEGER}
-		where ID =
-		#{id,jdbcType=BIGINT}
+		SORT
+		= #{sort,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=BIGINT}
 	</update>
 
 	<!-- 后台分页查询 -->
-	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage" resultMap="BaseResultMap">
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage" parameterType="Map" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from app_app_info where deleted='N'
-		order by CREATE_TIME desc limit #{offset},#{limit}
+		<if test="search!=null and search!=''">
+			and (
+			APP_CODE like CONCAT('%',#{search},'%')
+			or APP_NAME like CONCAT('%',#{search},'%')
+			or APP_URL like CONCAT('%',#{search},'%')
+			or SSO_ACTION like CONCAT('%',#{search},'%')
+			or DESCRIPTION
+			like CONCAT('%',#{search},'%')
+			)
+		</if>
+		order by
+		<choose>
+			<when test="sort!=null and sort!=''">
+				<if test="sort=='appCode'">
+					APP_CODE
+				</if>
+				<if test="sort=='appName'">
+					APP_NAME
+				</if>
+				<if test="sort=='appUrl'">
+					APP_URL
+				</if>
+				<if test="sort=='ssoAction'">
+					SSO_ACTION
+				</if>
+				<if test="sort=='description'">
+					DESCRIPTION
+				</if>
+				<if test="sort=='modifyTime'">
+					MODIFY_TIME
+				</if>
+				${order}
+			</when>
+			<otherwise>MODIFY_TIME desc</otherwise>
+		</choose>
+		limit #{offset},#{limit}
 	</select>
 
-	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage.count" resultType="Integer">
-		select count(*) FROM app_app_info where deleted='N'
+	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findPage.count" parameterType="Map" resultType="Integer">
+		select count(id) FROM app_app_info where deleted='N'
+		<if test="search!=null and search!=''">
+			and (
+			APP_CODE like CONCAT('%',#{search},'%')
+			or APP_NAME like CONCAT('%',#{search},'%')
+			or APP_URL like CONCAT('%',#{search},'%')
+			or SSO_ACTION like CONCAT('%',#{search},'%')
+			or DESCRIPTION
+			like CONCAT('%',#{search},'%')
+			)
+		</if>
 	</select>
 
 	<select id="com.dassmeta.passport.dal.ibatis.AppAppInfoDao.findAllApp" resultMap="BaseResultMap">
 		select distinct a.* from app_app_info a
 		left join urp_permission ps
 		on a.ID=ps.app_id
-		where a.deleted='N'
-		and
+		where a.deleted='N' and
 		ps.deleted='N'
 	</select>
 

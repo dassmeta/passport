@@ -9,4 +9,6 @@
 <meta name="description" content="稳定可靠的权限认证服务" />
 <meta name="keywords" content="统一,权限,权限认证,授权" />
 <meta name="author" content="nayun.info" />
-<link href="${ctx}/dist/css/zui.min.css" rel="stylesheet">
+<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${ctx}/css/bootstrap-table.min.css" rel="stylesheet" />
+<link href="${ctx}/css/bootstrap-editable.css" rel="stylesheet" />

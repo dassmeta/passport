@@ -12,7 +12,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -139,6 +138,20 @@
 			<artifactId>json-simple</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 		</dependency>
@@ -229,6 +242,7 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -242,7 +256,7 @@
 
 		<dependency>
 			<groupId>com.dassmeta.passport</groupId>
-			<artifactId>passport-core</artifactId>
+			<artifactId>passport-security</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

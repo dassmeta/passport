@@ -14,6 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.dassmeta.passport.core.service.ApplicationService;
 import com.dassmeta.passport.dal.dataobject.AppAppInfo;
@@ -43,6 +46,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private UrpRoleDao roleDao;
 
+	@Autowired
+	private TransactionTemplate aclTransactionTemplate;
+
 	public PageList<AppAppInfo> findForPage(Map<String, Object> params, int pageSize, int pageNo) {
 		if (logger.isInfoEnabled()) {
 			logger.info("findForPage invoke,params:{},pageSize:{},pageNo:{}", params, pageSize, pageNo);
@@ -65,24 +71,31 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return appInfoDao.getAllApp();
 	}
 
-	public void save(AppAppInfo app) {
-		if (logger.isInfoEnabled()) {
-			logger.info("save invoke,create app:{}", app);
-		}
-		long appId = appInfoDao.create(app);
+	public void save(final AppAppInfo app) {
+		aclTransactionTemplate.execute(new TransactionCallback<Long>() {
 
-		String appname = app.getAppName();
-		AppMenu menu = new AppMenu();
-		menu.setId(null);
-		menu.setMenuName(appname);
-		menu.setAppId(appId);
-		menu.setMenuOrder(1);
-		menu.setParentId(Long.valueOf(0L));
-		menu.setShowStyle("1");
-		if (logger.isInfoEnabled()) {
-			logger.info("save invoke,create menu:{}", menu);
-		}
-		menuDao.create(menu);
+			@Override
+			public Long doInTransaction(TransactionStatus status) {
+				if (logger.isInfoEnabled()) {
+					logger.info("save invoke,create app:{}", app);
+				}
+				long appId = appInfoDao.create(app);
+				String appname = app.getAppName();
+				AppMenu menu = new AppMenu();
+				menu.setId(null);
+				menu.setMenuName(appname);
+				menu.setAppId(appId);
+				menu.setMenuOrder(1);
+				menu.setParentId(Long.valueOf(0L));
+				menu.setShowStyle("1");
+				if (logger.isInfoEnabled()) {
+					logger.info("save invoke,create menu:{}", menu);
+				}
+				menuDao.create(menu);
+				return appId;
+			}
+		});
+
 	}
 
 	public List<UrpRole> getRoleByAppId(String appId) {

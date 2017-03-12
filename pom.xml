@@ -143,11 +143,6 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>${org.aspectj.aspectjweaver}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId></artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
@@ -373,6 +368,12 @@
 			<dependency>
 				<groupId>com.dassmeta.passprot</groupId>
 				<artifactId>passprot-security</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.dassmeta.passprot</groupId>
+				<artifactId>passprot-taglib</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

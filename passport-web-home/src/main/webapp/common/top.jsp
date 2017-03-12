@@ -6,9 +6,9 @@
 		<a class="navbar-brand" href="#">LOGO</a>
 	</div>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
-			<li><a href="${ctx}/">首页</a></li>
-			<li><a href="${ctx}/app">应用系统管理</a></li>
+		<ul class="nav navbar-nav" id="navbar-nav">
+			<li class="active"><a href="${ctx}/">首页</a></li>
+			<li><a href="${ctx}/app/manage">应用系统管理</a></li>
 			<li><a href="${ctx}/org">组织机构管理</a></li>
 			<li><a href="${ctx}/user">用户管理</a></li>
 			<li><a href="${ctx}/role">角色管理</a></li>

@@ -1,22 +1,34 @@
 package com.dassmeta.passport.util;
 
-public class ReturnJson {
-	private String statusCode;
-	private String message;
+import java.io.Serializable;
 
-	public String getStatusCode() {
-		return this.statusCode;
+public class ReturnJson<T> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8582430288374229869L;
+
+	private Integer total;
+	private T rows;
+
+	public Integer getTotal() {
+		return total;
 	}
 
-	public void setStatusCode(String statusCode) {
-		this.statusCode = statusCode;
+	public void setTotal(Integer total) {
+		this.total = total;
 	}
 
-	public String getMessage() {
-		return this.message;
+	public T getRows() {
+		return rows;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setRows(T rows) {
+		this.rows = rows;
+	}
+
+	@Override
+	public String toString() {
+		return "ReturnJson [total=" + total + ", rows=" + rows + "]";
 	}
 }
