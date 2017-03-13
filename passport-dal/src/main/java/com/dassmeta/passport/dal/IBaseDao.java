@@ -34,8 +34,6 @@ public interface IBaseDao<T> {
 
 	int batchUpdate(List<T> paramList) throws DataAccessException;
 
-	PageList<T> findPageList(T t, int pageSize, int pageNo);
-
 	PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo);
 
 	JdbcTemplate getJdbcTemplate();

@@ -1,4 +1,4 @@
-package com.dassmeta.passport.dal;
+package com.dassmeta.passport.dal.redis.impl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,31 +8,29 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.dassmeta.passport.dal.dataobject.UrpUserRole;
+import com.dassmeta.passport.dal.ibatis.UrpUserRoleDao;
+import com.dassmeta.passport.util.IbatisMapperNameSpaceUtil;
 import com.dassmeta.passport.util.PageList;
 import com.dassmeta.passport.util.PageQueryUtils;
 
-/**
- * @param <T>
- * @author chenxin@dassmeta.com
- * @creation 2017年1月19日
- */
-public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements IBaseDao<T> {
+public class UrpUserRoleDaoImpl extends SqlSessionDaoSupport implements UrpUserRoleDao {
 
 	private JdbcTemplate jdbcTemplate;
 
-	public T findByPrimaryKey(Serializable id) throws DataAccessException {
+	public UrpUserRole findByPrimaryKey(Serializable id) throws DataAccessException {
 		return getSqlSession().selectOne("selectByPrimaryKey", id);
 	}
 
-	public long create(T t) throws DataAccessException {
+	public long create(UrpUserRole t) throws DataAccessException {
 		return getSqlSession().insert("insert", t);
 	}
 
-	public int update(T t) throws DataAccessException {
+	public int update(UrpUserRole t) throws DataAccessException {
 		return getSqlSession().update("update", t);
 	}
 
-	public int remove(T t) throws DataAccessException {
+	public int remove(UrpUserRole t) throws DataAccessException {
 		return getSqlSession().delete("remove", t);
 	}
 
@@ -40,28 +38,33 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 		return getSqlSession().delete("deleteByPrimaryKey", id);
 	}
 
-	public int saveOrUpdate(T t) throws DataAccessException {
+	public int saveOrUpdate(UrpUserRole t) throws DataAccessException {
 		return getSqlSession().update("saveOrUpdate", t);
 	}
 
-	public int batchSave(List<T> paramList) throws DataAccessException {
+	public int batchSave(List<UrpUserRole> paramList) throws DataAccessException {
 		return getSqlSession().insert("batchSave", paramList);
 	}
 
-	public List<T> batchSaveReturnIds(List<T> paramList) throws DataAccessException {
+	public List<UrpUserRole> batchSaveReturnIds(List<UrpUserRole> paramList) throws DataAccessException {
 		return null;
 	}
 
-	public int batchUpdate(List<T> paramList) throws DataAccessException {
+	public int batchUpdate(List<UrpUserRole> paramList) throws DataAccessException {
 		return getSqlSession().update("batchUpdate", paramList);
 	}
 
-	public PageList<T> findPageList(T t, int pageSize, int pageNo) {
+	public PageList<UrpUserRole> findPageList(UrpUserRole t, int pageSize, int pageNo) {
+		IbatisMapperNameSpaceUtil.getMethodPath(this.getClass(), "pageList");
 		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", t, pageNo, pageSize);
 	}
 
-	public PageList<T> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
+	public PageList<UrpUserRole> findPageList(Map<String, Object> params, int pageSize, int pageNo) {
 		return PageQueryUtils.pageQuery(getSqlSession(), "pageList", params, pageNo, pageSize);
+	}
+
+	public void removeByRoleId(Long roleId) {
+		getSqlSession().delete("removeByRoleId", roleId);
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -71,4 +74,5 @@ public abstract class IBatisBaseDao<T> extends SqlSessionDaoSupport implements I
 	public void setJdbcTemplate(JdbcTemplate paramJdbcTemplate) {
 		this.jdbcTemplate = paramJdbcTemplate;
 	}
+
 }

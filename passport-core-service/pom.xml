@@ -218,6 +218,10 @@
 			<artifactId>druid</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.dassmeta.passport</groupId>
 			<artifactId>passport-dal</artifactId>
 			<version>${project.version}</version>
