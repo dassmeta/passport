@@ -14,22 +14,21 @@ public class IndexTempController {
 	/** LOGGER */
 	// private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
-	@RequestMapping("/")
-	public String home(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "login";
-	}
+//	@RequestMapping("/")
+//	public String home(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//		return "login";
+//	}
 
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return "home";
-
 	}
 
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return "login";
-
-	}
+//	@RequestMapping("/login")
+//	public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//		return "login";
+//
+//	}
 
 	@RequestMapping("/org")
 	public String tables(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -243,6 +243,11 @@
 			<artifactId>quartz</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+		</dependency>
+
 		<!-- 添加druid连接池包 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

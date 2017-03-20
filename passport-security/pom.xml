@@ -68,7 +68,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
+			<artifactId>shiro-all</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
